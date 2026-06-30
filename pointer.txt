@@ -1,0 +1,225 @@
+=========================================
+MILITARY HOSPITAL SMART HEALTHCARE MANAGEMENT SYSTEM (MHSHMS)
+DEVELOPMENT PROGRESS POINTER
+=========================================
+
+Current Phase: Milestone 19 - WebSockets Live Sync, DB Backup/Restore & Notifications
+Status: COMPLETED
+Last Updated: 2026-07-28
+
+-----------------------------------------
+1. WORKSPACE STRUCTURE
+-----------------------------------------
+[x] Root package.json (npm workspaces configured)
+[x] Root .gitignore configured
+[x] packages/types (Shared types initialized)
+[x] apps/web (React, Vite, TS, Tailwind boilerplate)
+[x] apps/api (Express, TS, Prisma boilerplate)
+[x] apps/ai-service (FastAPI boilerplate)
+
+-----------------------------------------
+2. FRONTEND PORTAL DIRECTORY & DASHBOARD (apps/web)
+-----------------------------------------
+[x] Landing Portal Selection Page (featuring symbols/icons for all five role-based portals)
+[x] Role-preconfigured Login forms (with auto-offline mock fallback)
+[x] Dynamic sidebar views and stats matching acting roles
+[x] Patient CRUD operations panel
+[x] Doctor Roster schedules
+[x] Live token queue priority simulation (FIFO + triage scoring)
+[x] Pharmacy stock levels edit panel
+[x] Referral Board approvals
+
+-----------------------------------------
+3. DATABASE & BACKEND SERVICES (apps/api & infra)
+-----------------------------------------
+[x] docker-compose.yml (PostgreSQL + Redis definitions)
+[x] .env configurations for local / server connections
+[x] Complete Prisma DB Schema mapping core military entities
+[x] Database seeding script (prisma/seed.ts) with sample users
+[x] Express authenticateJWT and requireRoles RBAC middleware
+[x] Express Auth Router (/login, /register, /me)
+
+-----------------------------------------
+4. PATIENT MANAGEMENT & API INTEGRATION (Milestone 2)
+-----------------------------------------
+[x] REST endpoints (GET, POST, PUT, DELETE, /history, /reports) in Express
+[x] Transactional User + Patient record creation & updating in Prisma
+[x] Conversion helpers mapping BloodGroup enums between database and frontend
+[x] Frontend integration (automatic loading, registration, edit, deletion fetches)
+[x] Graceful API-to-mock fallback logic for seamless offline evaluation
+
+-----------------------------------------
+5. DOCTOR MANAGEMENT & API INTEGRATION (Milestone 3)
+-----------------------------------------
+[x] REST endpoints (GET, GET /available, GET /schedule, GET /:id, POST, PUT, POST /prescription)
+[x] Hashed user account mapping & automatic schedule roster seeding in Prisma
+[x] Frontend integration (automatic doctors loading, name cache mapping, registration, availability switches)
+[x] Dynamic mapping of doctor name resolution cache from backend usernames
+[x] Graceful API-to-mock fallback logic for seamless offline evaluation
+
+-----------------------------------------
+6. APPOINTMENT SYSTEM & API INTEGRATION (Milestone 4)
+-----------------------------------------
+[x] REST endpoints (GET, GET /queue, GET /slots, GET /:id, POST, PUT, DELETE)
+[x] Automated queue token sequencing and wait-time estimations in Prisma
+[x] Dynamic day-of-week active work slot mapping in backend
+[x] Frontend integration (automatic appointments loading, booking updates, next queue advances)
+[x] Graceful API-to-mock fallback logic for seamless offline evaluation
+
+-----------------------------------------
+7. PHARMACY & INVENTORY INTEGRATION (Milestone 5)
+-----------------------------------------
+[x] REST endpoints (GET /medicines, GET /inventory, POST /inventory, PUT /inventory/:medicineId, GET /inventory/search)
+[x] Relational schema joining, transactional stock creators, and safety fallbacks in Prisma
+[x] Frontend integration (automatic inventory loading, stock count adjustments)
+[x] Graceful API-to-mock fallback logic for seamless offline evaluation
+
+-----------------------------------------
+8. REFERRAL BOARD SYSTEM & INTEGRATION (Milestone 6)
+-----------------------------------------
+[x] REST endpoints (GET, GET /status, POST, PUT /:id)
+[x] Roster query resolvers, unique tracking generator, and seed clinical consultation records
+[x] Frontend integration (automatic referrals loading, command hospital status updates)
+[x] Graceful API-to-mock fallback logic for seamless offline evaluation
+
+-----------------------------------------
+9. AI SERVICE INTEGRATION (Milestone 7)
+-----------------------------------------
+[x] Setup FastAPI microservice (apps/ai-service) on port 8000
+[x] Implement triage classifier and specialist recommenders
+[x] Frontend integration (interactive triage assessment dashboard, confidence meters, recommenders)
+[x] Graceful API-to-mock fallback logic for seamless offline evaluation
+
+-----------------------------------------
+10. REAL-TIME NOTIFICATION SYSTEM (Milestone 8)
+-----------------------------------------
+[x] REST endpoints (GET, GET /unread-count, PUT /:id/read, PUT /mark-all-read, DELETE /:id)
+[x] Appointment booking trigger emits APPOINTMENT notification to patient
+[x] Referral approval trigger emits REFERRAL notification to patient
+[x] Frontend notification bell with animated unread badge in top header
+[x] Dropdown notification panel: mark-all-read, per-item dismiss, 30-second auto-poll
+[x] Sample notifications seeded for patient user in seed.ts
+
+-----------------------------------------
+11. AUDIT LOGGING SYSTEM (Milestone 9)
+-----------------------------------------
+[x] AuditLog model in Prisma schema
+[x] logAudit fire-and-forget helper in audit.helper.ts
+[x] audit.routes.ts with GET / (paginated, filterable) and GET /summary -- Admin only
+[x] Audit hooks in auth, patient, doctor, appointment, referral, pharmacy routes
+[x] Frontend "Audit Event Log" tab (Admin/Super-Admin) with summary widgets, filter bar, paginated table
+
+-----------------------------------------
+12. LAB REPORTS MODULE (Milestone 10)
+-----------------------------------------
+[x] LabReport model already in Prisma schema (testId, consultationId, testName, status, result, reportURL, performedBy)
+[x] lab-report.routes.ts with full CRUD
+[x] logAudit hooks: CREATE, COMPLETE/UPDATE, DELETE on LAB_REPORT entity
+[x] Route registered in app.ts at /api/v1/lab-reports
+[x] Seed data: 4 lab reports
+[x] Frontend "Lab Reports" sidebar nav with pending badge count, table, update & create modals, mock fallback
+
+-----------------------------------------
+13. USER ACCOUNTS MANAGEMENT (Milestone 11)
+-----------------------------------------
+[x] user.routes.ts with endpoints: GET /, GET /summary, GET /:id, PUT /:id/status, PUT /:id/role, POST /
+[x] logAudit hooks: CREATE (user creation), SUSPEND/REACTIVATE/DEACTIVATE (status update), UPDATE (role change) on USER entity
+[x] Route registered in app.ts at /api/v1/users
+[x] Frontend "User Accounts" sidebar nav tab (visible to ADMIN and SUPER_ADMIN roles) with Update Access & Add Staff modals and mock fallback
+
+-----------------------------------------
+14. LIVE DASHBOARD STATS (Milestone 12)
+-----------------------------------------
+[x] dashboard.routes.ts with endpoint GET /stats: waiting, inConsultation, activeDocs, totalDocs, lowStock, pendingReferrals
+[x] Route registered in app.ts at /api/v1/dashboard
+[x] Frontend integration: added liveStats state and fetchDashboardStats callback in App.tsx with auto-refetch hooks and mock fallbacks
+
+-----------------------------------------
+15. BED TELEMETRY & WARD CONTROL (Milestone 13)
+-----------------------------------------
+[x] hospital.routes.ts with endpoints: GET /beds, PUT /beds/:id/allocate, PUT /beds/:id/release, PUT /beds/:id/maintenance
+[x] logAudit hooks: CREATE (bed allocation), DELETE (bed release), UPDATE (maintenance toggle) on BED_ALLOCATION & BED_MAINTENANCE entities
+[x] Route registered in app.ts at /api/v1/hospital
+[x] Frontend "Bed Telemetry" sidebar nav tab (visible to ADMIN, SUPER_ADMIN, DOCTOR, RECEPTIONIST roles) with Bed Control Modal and mock fallback
+
+-----------------------------------------
+16. OPERATIONS & TELEMETRY ANALYTICS (Milestone 14)
+-----------------------------------------
+[x] Frontend "Hospital Analytics" sidebar nav tab (visible to ADMIN and SUPER_ADMIN roles)
+[x] Integrated beautiful bar-charts and horizontal metrics using CSS flex layouts mapping:
+    - Queue Urgency Priority distribution (Emergency vs. Senior vs. Normal caseloads)
+    - Active specialty load allocation indicators (Doctors load deployment stats)
+    - Pharmacy inventory reorder safety level gauges (Understock warning visual meters)
+    - Operational logs monitor widgets (Triage velocity, bed occupancies, lab tests, waiting lists)
+[x] Centralized sync button and automatic state synchronization hooks
+
+-----------------------------------------
+17. AUTOMATED API TEST SUITE (Milestone 15)
+-----------------------------------------
+[x] api-integration.test.ts using Node.js's native `node:test` runner.
+[x] Resolves actual seeded admin user credentials dynamically to guarantee valid signed test tokens and realistic audit logs.
+[x] Fully covers:
+    - GET /dashboard/stats: retrieves operational metrics.
+    - GET /hospital/beds: returns telemetry & summaries.
+    - PUT /hospital/beds/:id/allocate: updates bed statuses and validates audit trails.
+    - PUT /hospital/beds/:id/maintenance: toggles sanitization states.
+    - GET /users & GET /users/summary: fetches users and aggregates role statuses.
+    - GET /lab-reports & GET /lab-reports/summary: lists diagnostics tests and resolves test breakdowns.
+[x] Automated execution script runs on `ts-node -T` for immediate sub-second feedback.
+
+-----------------------------------------
+18. DOCKER DEPLOYMENT & PDF EXPORT SERVICES (Milestone 16)
+-----------------------------------------
+[x] Multi-stage Dockerfiles written for apps/api, apps/web (with Nginx SPA router configuration), and apps/ai-service.
+[x] Combined docker-compose.yml updated to bundle all 5 system services (postgres, redis, ai-service, api, web) with port routing.
+[x] PDF Helper service developed on the backend utilizing `pdfkit` to generate official military-grade PDF documents for:
+    - Diagnostic Lab Reports (including Defence patient records and digital signature blocks).
+    - Real-time Hospital Bed Telemetry and Ward Occupancy charts.
+[x] E2E Workflow Test runner (workflow.test.ts) simulates patient registration, appointment check-ins, AI symptom triage, command referrals, approvals, lab completion, and PDF generation.
+[x] Integrated download action handlers in frontend React dashboard UI for both Lab diagnostics and ward telemetry.
+[x] Automated `scripts/test-docker-workflow.sh` orchestration script starts containers, migrates tables, seeds data, and runs tests.
+
+-----------------------------------------
+19. NEXT STEPS FOR NEXT AGENT
+-----------------------------------------
+1. Setup a CI/CD GitHub Actions workflow to run the Docker integration test runner on pull requests.
+2. Build CSV/Excel export capabilities for Pharmacy Inventory levels and system Audit Logs.
+
+-----------------------------------------
+20. CI/CD GITHUB ACTIONS & CSV EXPORT (Milestone 17)
+-----------------------------------------
+[x] .github/workflows/ci.yml — 3-job pipeline (api-tests, web-build, docker-e2e):
+    - api-tests: spins up Postgres+Redis services, migrates, seeds, runs api-integration.test.ts
+    - web-build: installs deps, runs `npm run build`, reports bundle size to job summary
+    - docker-e2e: optional E2E gate on push to main only, soft continues on Docker failures
+[x] GET /api/v1/inventory/export — streams pharmacy inventory as UTF-8 CSV with BOM (Excel-safe), includes Status column derived from stock thresholds; audit-logged
+[x] GET /api/v1/audit/export — streams all audit logs as CSV (honours entity/action/userId filters same as paginated list)
+[x] Frontend Pharmacy tab: "Export CSV" button (emerald green, Download icon) calls handleExportPharmacyCSV with API-first + in-memory offline fallback
+[x] Frontend Audit Log tab: "Export CSV" button beside "Refresh Log" calls handleExportAuditCSV (honours active filter state) with API-first + in-memory offline fallback
+
+-----------------------------------------
+21. EXCEL EXPORTS, PATIENT HISTORY & RATE LIMITING (Milestone 18)
+-----------------------------------------
+[x] Backend: Applied `exportRateLimiter` middleware to all CSV, PDF, and XLSX export routes.
+[x] Backend: Created Excel workbook exports for Audit Logs and Pharmacy Inventory with custom styled headers, freeze panes, and status color formatting.
+[x] Backend: Configured patient history export endpoints (PDF, CSV, Excel) with proper ownership validation.
+[x] Frontend: Added Role-restricted Excel Export buttons in Pharmacy Stock and Audit Logs tabs.
+[x] Frontend: Integrated a comprehensive "Military Medical History File" modal inside the Patients tab showing clinical diagnostics, symptom history, prescriptions, and referral status.
+[x] Frontend: Provided quick export options (PDF, Excel, CSV) inside the patient history modal.
+
+-----------------------------------------
+22. WEBSOCKETS LIVE SYNC, AUTOMATED DB BACKUPS & NOTIFICATIONS (Milestone 19)
+-----------------------------------------
+[x] Backend: Attached WebSocket server (`/ws`) to API HTTP server for real-time telemetry streaming (`BED_UPDATE`, `APPOINTMENT_UPDATED`, `SYSTEM_NOTIFICATION`).
+[x] Backend: Created multi-channel Notification Dispatch service (`notification-dispatch.service.ts`) for Email & SMS patient/staff alerts.
+[x] Tooling: Built cross-platform database snapshot backup and restore scripts (`npm run db:backup` & `npm run db:restore`, `scripts/backup-db.sh`, `scripts/restore-db.sh`).
+[x] Frontend: Added WebSocket live sync client connection hook with auto-reconnect and an interactive "Live Data Sync" status badge in the top navigation header.
+
+-----------------------------------------
+23. NEXT STEPS FOR NEXT AGENT
+-----------------------------------------
+1. Implement Redis Pub/Sub backend for multi-instance WebSocket scaling across clustered API deployments.
+2. Build interactive WebGL/3D ward floorplan visualizer for bed telemetry.
+3. Integrate AI-driven medical report summarization in the Patient History modal.
+
+

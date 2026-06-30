@@ -1,0 +1,4787 @@
+Military Hospital Smart Healthcare Management System (MHSHMS)
+Part 1 – Project Foundation, Requirements Analysis & Software Engineering Design
+Version: 1.0
+Document Type: Software Requirements Specification (SRS) + High-Level System Design
+________________
+
+
+1. Project Overview
+Project Name
+Military Hospital Smart Healthcare Management System (MHSHMS)
+________________
+
+
+Vision Statement
+The Military Hospital Smart Healthcare Management System (MHSHMS) is a comprehensive digital healthcare platform designed specifically for Military Hospitals (MH). Unlike traditional Hospital Management Systems, MHSHMS addresses operational challenges unique to the armed forces ecosystem, including appointment scheduling, dependent management, referral processing, digital health records, pharmacy inventory visibility, and secure access across multiple military healthcare facilities.
+The platform aims to transform Military Hospitals into intelligent, connected healthcare centers by integrating AI-assisted decision support, real-time hospital operations, predictive analytics, and secure electronic medical records.
+________________
+
+
+2. Background
+Military hospitals currently rely heavily on manual workflows, paper records, and fragmented information systems.
+This creates several operational issues:
+* Long patient queues
+* Unnecessary waiting times
+* Difficulty identifying the appropriate specialist
+* Manual referral processes
+* Missing patient history
+* Medicine availability uncertainty
+* Lack of transparency
+* Duplicate paperwork
+* Poor inter-hospital communication
+The project proposes an integrated digital ecosystem capable of solving these challenges while maintaining military-grade security.
+________________
+
+
+3. Problem Statement
+Current military healthcare operations suffer from fragmented processes that reduce efficiency for both healthcare providers and patients.
+The absence of centralized digital systems causes:
+Appointment Problems
+* Long queues
+* Manual token distribution
+* No online scheduling
+* No estimated waiting time
+________________
+
+
+Doctor Discovery Problems
+Patients cannot easily determine:
+* Which specialist is available
+* Which department handles their symptoms
+* Doctor availability
+________________
+
+
+Pharmacy Problems
+Patients visit pharmacy counters only to discover medicines are unavailable.
+There is no:
+* Inventory visibility
+* Medicine reservation
+* Stock prediction
+________________
+
+
+Referral Problems
+Referral management is entirely paper-based.
+Problems include:
+* Missing documents
+* Slow approvals
+* Lost files
+* No referral tracking
+________________
+
+
+Medical Record Problems
+Patient history remains scattered.
+Doctors cannot immediately access
+* Previous diagnosis
+* Surgeries
+* Allergies
+* Reports
+* Previous prescriptions
+________________
+
+
+Administrative Problems
+Hospital administrators lack insights into
+* Doctor workload
+* Queue length
+* Medicine consumption
+* Referral statistics
+* Disease trends
+________________
+
+
+4. Project Objectives
+The project aims to develop a centralized healthcare platform capable of:
+Primary Objectives
+* Digital OPD Appointment System
+* Smart Queue Management
+* Doctor Discovery System
+* Electronic Health Records
+* Digital Prescription
+* Pharmacy Inventory Management
+* Referral Management
+* Military Family Management
+* Analytics Dashboard
+________________
+
+
+Secondary Objectives
+* AI-based Symptom Analysis
+* Predictive Medicine Inventory
+* QR Health Cards
+* Voice Assistant
+* Mobile Notifications
+* Cross-Hospital Data Sharing
+* AI Health Analytics
+________________
+
+
+5. Scope
+Included
+Patient Portal
+Doctor Portal
+Admin Portal
+Pharmacy Portal
+Referral Department Portal
+Laboratory Portal
+Medical Records
+Appointment Scheduling
+Medicine Inventory
+Hospital Analytics
+Notification System
+Authentication
+Authorization
+Audit Logs
+AI Recommendation Engine
+________________
+
+
+Excluded
+Financial Accounting
+Payroll
+Biometric Attendance
+Hospital Procurement
+Insurance Billing
+Military Personnel Database
+These may be future modules.
+________________
+
+
+6. Stakeholders
+Primary
+Patients
+Military Personnel
+Ex-Army Personnel
+Dependents
+Doctors
+Surgeons
+Pharmacists
+Reception Staff
+Hospital Administration
+Referral Officers
+Laboratory Staff
+Military Medical Headquarters
+________________
+
+
+Secondary
+Private Referral Hospitals
+Medicine Suppliers
+Government Health Authorities
+________________
+
+
+7. Functional Requirements
+________________
+
+
+Patient Module
+The patient shall be able to
+* Register
+* Login
+* Book appointments
+* View appointments
+* Cancel appointments
+* Track queue
+* Download prescriptions
+* View reports
+* Search medicines
+* Track referrals
+* Access medical history
+* View notifications
+* Manage family members
+________________
+
+
+Doctor Module
+Doctor shall be able to
+* View appointments
+* View patient history
+* Create prescriptions
+* Upload reports
+* Generate referrals
+* Approve follow-ups
+* View analytics
+________________
+
+
+Pharmacy Module
+Pharmacist shall be able to
+* Manage inventory
+* Dispense medicines
+* Scan prescriptions
+* Update stock
+* Generate alerts
+* View low inventory
+________________
+
+
+Referral Module
+Officer shall be able to
+* Review referrals
+* Upload approvals
+* Assign hospitals
+* Track status
+* Notify patients
+________________
+
+
+Admin Module
+Admin shall
+* Manage users
+* Manage departments
+* Manage doctors
+* Generate reports
+* Configure schedules
+* Monitor system
+________________
+
+
+8. Non-Functional Requirements
+Performance
+* Support 10,000+ active users
+* Appointment search under 2 seconds
+* Queue update under 1 second
+________________
+
+
+Availability
+99.9% uptime
+________________
+
+
+Scalability
+Support multiple Military Hospitals
+Horizontal scaling
+________________
+
+
+Security
+AES Encryption
+JWT Authentication
+RBAC
+Audit Logs
+HTTPS
+Secure Password Hashing
+Rate Limiting
+Input Validation
+SQL Injection Protection
+XSS Protection
+CSRF Protection
+________________
+
+
+Maintainability
+Modular Architecture
+Clean Code
+SOLID Principles
+Layered Design
+Dependency Injection
+Repository Pattern
+________________
+
+
+Usability
+Simple UI
+Large fonts for elderly
+Hindi + English
+Responsive Design
+Accessibility Support
+________________
+
+
+9. Software Engineering Principles
+The project follows modern software engineering practices.
+SDLC
+Agile Scrum
+Sprint Length
+2 Weeks
+________________
+
+
+Sprint Example
+Sprint 1
+Authentication
+Sprint 2
+Patient Module
+Sprint 3
+Doctor Module
+Sprint 4
+Appointments
+Sprint 5
+Pharmacy
+Sprint 6
+Referral
+Sprint 7
+AI Features
+Sprint 8
+Deployment
+________________
+
+
+Version Control
+Git Flow
+main
+develop
+feature branches
+release branches
+hotfix branches
+________________
+
+
+Documentation
+API Documentation
+Swagger
+ER Diagram
+Architecture Diagram
+Class Diagram
+Sequence Diagram
+Deployment Diagram
+________________
+
+
+Testing
+Unit Testing
+Integration Testing
+System Testing
+Performance Testing
+Security Testing
+________________
+
+
+10. Engineering Design Principles
+Separation of Concerns
+Every module should perform only one responsibility.
+Appointment logic must never exist inside Patient Service.
+________________
+
+
+High Cohesion
+Classes performing related tasks remain together.
+________________
+
+
+Low Coupling
+Modules communicate through interfaces.
+Changing Pharmacy module should not affect Referral module.
+________________
+
+
+Information Hiding
+Database operations remain inside repositories.
+Controllers never execute SQL.
+________________
+
+
+Encapsulation
+Patient object
+Private Data
+Public Methods
+Patient
+
+
++ bookAppointment()
+
+
++ viewHistory()
+
+
++ cancelAppointment()
+
+
+-private medicalHistory
+-private allergies
+-private reports
+________________
+
+
+Abstraction
+Every service exposes interfaces.
+Example
+AppointmentService
+
+
+bookAppointment()
+
+
+cancelAppointment()
+
+
+getAvailableSlots()
+Implementation hidden.
+________________
+
+
+Composition Over Inheritance
+Instead of
+Doctor extends User
+Surgeon extends Doctor
+Prefer
+Doctor
+has
+Department
+has
+Schedule
+has
+Qualification
+________________
+
+
+11. SOLID Principles
+Single Responsibility Principle
+Appointment Service
+Only appointment logic
+Notification Service
+Only notifications
+Inventory Service
+Only medicines
+________________
+
+
+Open Closed Principle
+Adding a new department
+Should not modify existing code.
+Use Strategy Pattern.
+________________
+
+
+Liskov Substitution
+Any specialized doctor
+Should replace Doctor interface
+Without breaking code.
+________________
+
+
+Interface Segregation
+Instead of
+HospitalService
+100 methods
+Use
+AppointmentService
+DoctorService
+ReferralService
+InventoryService
+PatientService
+________________
+
+
+Dependency Inversion
+Controller depends on
+Interfaces
+Not implementation
+AppointmentController
+
+
+↓
+
+
+AppointmentService Interface
+
+
+↓
+
+
+AppointmentServiceImpl
+
+
+↓
+
+
+Repository
+________________
+
+
+12. Object-Oriented Design
+Core Entities
+User
+Patient
+Doctor
+Appointment
+Department
+MedicalRecord
+Prescription
+Medicine
+Inventory
+Referral
+Notification
+LabReport
+FamilyMember
+Hospital
+Role
+Permission
+AuditLog
+Each entity should model a real-world concept with clear responsibilities and relationships.
+
+
+
+
+
+
+
+
+
+
+Military Hospital Smart Healthcare Management System (MHSHMS)
+Part 2 – System Architecture, Object-Oriented Design & High-Level System Design
+Version: 1.0
+Document Type: Software Architecture Design Document (SAD)
+________________
+
+
+1. Architecture Philosophy
+The system should not be built as a single monolithic application. It should follow a Modular Monolith architecture initially, with clear module boundaries so it can later evolve into Microservices if the system grows.
+This approach provides:
+* Easier development for a student project.
+* Better maintainability.
+* Clear separation of concerns.
+* Future scalability.
+________________
+
+
+2. High-Level Architecture
+               +----------------------+
+                |   Web Frontend       |
+                | React + TypeScript   |
+                +----------+-----------+
+                           |
+                    HTTPS / REST API
+                           |
+                +----------v-----------+
+                |    API Gateway        |
+                | Authentication Layer |
+                +----------+-----------+
+                           |
+         ------------------------------------------------
+         |        |         |        |        |         |
+         v        v         v        v        v         v
+    Patient   Appointment  Doctor  Pharmacy Referral Medical
+     Module      Module    Module   Module   Module   Records
+         |        |         |        |        |         |
+         ------------------------------------------------
+                           |
+                   Business Layer
+                           |
+              Repository / Service Layer
+                           |
+                    PostgreSQL Database
+                           |
+        Redis Cache + Notification Queue
+                           |
+         AI Recommendation Engine (Future)
+
+
+________________
+
+
+3. Layered Architecture
+The system follows 5-Layer Architecture.
+Presentation Layer
+
+
+↓
+
+
+Controller Layer
+
+
+↓
+
+
+Service Layer
+
+
+↓
+
+
+Repository Layer
+
+
+↓
+
+
+Database Layer
+
+
+________________
+
+
+Presentation Layer
+Responsibilities:
+* User Interface
+* Forms
+* Validation
+* Dashboard
+* Charts
+Technology
+* React
+* Tailwind CSS
+* React Router
+* React Query
+________________
+
+
+Controller Layer
+Responsibilities
+* Receive requests
+* Validate inputs
+* Call services
+* Return responses
+Example
+POST /appointments
+
+
+↓
+
+
+AppointmentController
+
+
+↓
+
+
+AppointmentService
+
+
+Controllers should never contain business logic.
+________________
+
+
+Service Layer
+Responsible for
+* Appointment booking
+* Queue generation
+* Referral approval
+* Doctor recommendation
+* Inventory updates
+All business logic belongs here.
+________________
+
+
+Repository Layer
+Responsible only for
+* Database operations
+Example
+AppointmentRepository
+
+
+save()
+
+
+update()
+
+
+delete()
+
+
+findById()
+
+
+No business logic.
+________________
+
+
+Database Layer
+Stores
+* Patient data
+* Doctors
+* Medicines
+* Appointments
+* Reports
+* Referrals
+________________
+
+
+4. Package Structure
+src/
+
+
+controllers/
+
+
+services/
+
+
+repositories/
+
+
+entities/
+
+
+middlewares/
+
+
+config/
+
+
+utils/
+
+
+validators/
+
+
+routes/
+
+
+constants/
+
+
+exceptions/
+
+
+notifications/
+
+
+auth/
+
+
+ai/
+
+
+tests/
+
+
+Every module follows the same structure.
+________________
+
+
+5. Domain Driven Design
+Instead of organizing by technical layer only, organize by business domains.
+Patient
+
+
+Doctor
+
+
+Appointment
+
+
+Referral
+
+
+Pharmacy
+
+
+Inventory
+
+
+Laboratory
+
+
+Notification
+
+
+Authentication
+
+
+Each domain contains
+Controller
+
+
+Service
+
+
+Repository
+
+
+DTO
+
+
+Entity
+
+
+Validator
+
+
+Routes
+
+
+This improves maintainability.
+________________
+
+
+6. Core Modules
+Authentication Module
+Responsibilities
+* Login
+* Logout
+* JWT
+* Refresh Token
+* Password Reset
+* MFA
+________________
+
+
+Patient Module
+Responsibilities
+* Profile
+* Medical History
+* Family Members
+* Appointments
+________________
+
+
+Doctor Module
+Responsibilities
+* OPD
+* Schedule
+* Prescription
+* Diagnosis
+________________
+
+
+Pharmacy Module
+Responsibilities
+* Medicine Inventory
+* Dispensing
+* Stock Updates
+* Alerts
+________________
+
+
+Referral Module
+Responsibilities
+* Referral Creation
+* Approval
+* Transfer Tracking
+________________
+
+
+Laboratory Module
+Responsibilities
+* Test Booking
+* Reports
+* Upload Results
+________________
+
+
+Notification Module
+Responsibilities
+* Email
+* SMS
+* Push Notifications
+* WhatsApp (Future)
+________________
+
+
+7. OOP Design
+Everything should be represented as Objects.
+Example
+Patient
+
+
+Doctor
+
+
+Appointment
+
+
+Department
+
+
+Hospital
+
+
+Medicine
+
+
+Prescription
+
+
+Referral
+
+
+Inventory
+
+
+MedicalRecord
+
+
+Notification
+
+
+________________
+
+
+Example
+Patient Object
+Properties
+patientId
+
+
+name
+
+
+dob
+
+
+bloodGroup
+
+
+allergies
+
+
+dependents
+
+
+medicalHistory
+
+
+Methods
+bookAppointment()
+
+
+cancelAppointment()
+
+
+viewHistory()
+
+
+downloadPrescription()
+
+
+viewReports()
+
+
+________________
+
+
+Doctor Object
+Properties
+doctorId
+
+
+department
+
+
+specialization
+
+
+availability
+
+
+qualification
+
+
+Methods
+approveAppointment()
+
+
+createPrescription()
+
+
+generateReferral()
+
+
+viewPatientHistory()
+
+
+________________
+
+
+8. SOLID Implementation
+Single Responsibility
+AppointmentService
+
+
+Only appointments
+
+
+InventoryService
+
+
+Only medicine logic
+
+
+________________
+
+
+Open Closed
+Adding a new hospital
+Should only create
+HospitalStrategy
+
+
+No modification elsewhere.
+________________
+
+
+Liskov
+GeneralDoctor
+
+
+SpecialistDoctor
+
+
+EmergencyDoctor
+
+
+
+
+All behave like Doctor.
+________________
+
+
+Interface Segregation
+Never create
+HospitalService
+
+
+200 methods
+
+
+Instead
+DoctorService
+
+
+InventoryService
+
+
+AppointmentService
+
+
+ReferralService
+
+
+________________
+
+
+Dependency Inversion
+AppointmentController
+
+
+↓
+
+
+AppointmentService Interface
+
+
+↓
+
+
+AppointmentServiceImpl
+
+
+Controller never depends on implementation.
+________________
+
+
+9. Design Patterns
+________________
+
+
+Repository Pattern
+Purpose
+Hide SQL from business logic.
+AppointmentRepository
+
+
+↓
+
+
+PostgreSQL
+
+
+________________
+
+
+Factory Pattern
+Used when creating users.
+Patient
+
+
+Doctor
+
+
+Admin
+
+
+Pharmacist
+
+
+ReferralOfficer
+
+
+Instead of
+new Doctor()
+
+
+new Patient()
+
+
+new Admin()
+
+
+Use
+UserFactory
+
+
+________________
+
+
+Strategy Pattern
+Doctor Recommendation
+Recommend by
+
+
+Experience
+
+
+OR
+
+
+Waiting Time
+
+
+OR
+
+
+Nearest Hospital
+
+
+Each algorithm becomes a strategy.
+________________
+
+
+Observer Pattern
+Appointment booked
+↓
+Doctor notified
+↓
+Patient notified
+↓
+Dashboard updated
+One event
+Multiple listeners
+________________
+
+
+Singleton
+Database Connection
+
+
+Logger
+
+
+Redis Client
+
+
+Only one instance.
+________________
+
+
+Builder Pattern
+Prescription
+Contains
+Medicine
+Dosage
+Instructions
+Duration
+Tests
+Follow-up
+Builder avoids huge constructors.
+________________
+
+
+Adapter Pattern
+Integrating
+SMS API
+Email API
+WhatsApp API
+Different providers.
+________________
+
+
+Decorator Pattern
+User
+↓
+Premium Features
+↓
+AI Assistant
+↓
+Priority Appointment
+Future expansion.
+________________
+
+
+10. Database Design Philosophy
+Use PostgreSQL.
+Reasons
+* ACID compliance
+* Strong relationships
+* Transactions
+* Better reporting
+________________
+
+
+Normalization
+Target
+3NF
+Avoid duplicate data.
+________________
+
+
+Tables
+Users
+
+
+Roles
+
+
+Patients
+
+
+Doctors
+
+
+Departments
+
+
+Appointments
+
+
+MedicalRecords
+
+
+Prescriptions
+
+
+Medicines
+
+
+Inventory
+
+
+LabReports
+
+
+Notifications
+
+
+Referrals
+
+
+Hospitals
+
+
+FamilyMembers
+
+
+AuditLogs
+
+
+________________
+
+
+11. Relationships
+Patient
+
+
+↓
+
+
+Many Appointments
+
+
+↓
+
+
+Many Prescriptions
+
+
+↓
+
+
+Many Reports
+
+
+↓
+
+
+Many Referrals
+
+
+Doctor
+↓
+Many Appointments
+↓
+Many Prescriptions
+↓
+One Department
+Medicine
+↓
+Many Prescriptions
+↓
+One Inventory
+________________
+
+
+12. Authentication Flow
+Login
+
+
+↓
+
+
+Username Password
+
+
+↓
+
+
+JWT Generated
+
+
+↓
+
+
+Stored
+
+
+↓
+
+
+Every Request
+
+
+↓
+
+
+Middleware Verification
+
+
+↓
+
+
+Access Granted
+
+
+________________
+
+
+13. RBAC (Role-Based Access Control)
+Roles
+Patient
+
+
+Doctor
+
+
+Pharmacist
+
+
+Receptionist
+
+
+Lab Technician
+
+
+Referral Officer
+
+
+Hospital Admin
+
+
+Super Admin
+
+
+Permissions
+Example
+Patient
+View Own Record
+
+
+Book Appointment
+
+
+Download Prescription
+
+
+Doctor
+View Patient History
+
+
+Create Prescription
+
+
+Approve Appointment
+
+
+Admin
+Manage Users
+
+
+Manage Departments
+
+
+Analytics
+
+
+Audit Logs
+
+
+________________
+
+
+14. Sequence Diagram
+Appointment Booking
+Patient
+
+
+↓
+
+
+React UI
+
+
+↓
+
+
+Appointment Controller
+
+
+↓
+
+
+Appointment Service
+
+
+↓
+
+
+Doctor Availability
+
+
+↓
+
+
+Appointment Repository
+
+
+↓
+
+
+Database
+
+
+↓
+
+
+Token Generated
+
+
+↓
+
+
+Notification Service
+
+
+↓
+
+
+Patient
+
+
+________________
+
+
+15. Queue Algorithm
+Current systems
+FIFO
+Better algorithm
+Priority Queue
+Priority
+Emergency
+
+
+↓
+
+
+Senior Citizen
+
+
+↓
+
+
+Disabled
+
+
+↓
+
+
+Pregnant
+
+
+↓
+
+
+Children
+
+
+↓
+
+
+Normal Patient
+
+
+Within same priority
+FIFO
+________________
+
+
+16. Pharmacy Flow
+Doctor
+
+
+↓
+
+
+Prescription
+
+
+↓
+
+
+Inventory Check
+
+
+↓
+
+
+Medicine Reserved
+
+
+↓
+
+
+Patient Arrives
+
+
+↓
+
+
+QR Scan
+
+
+↓
+
+
+Medicine Dispensed
+
+
+↓
+
+
+Inventory Updated
+
+
+________________
+
+
+17. Referral Workflow
+Doctor
+
+
+↓
+
+
+Generate Referral
+
+
+↓
+
+
+Medical Officer
+
+
+↓
+
+
+Approve
+
+
+↓
+
+
+Assign Hospital
+
+
+↓
+
+
+Patient Notification
+
+
+↓
+
+
+Referral Completed
+
+
+Every step logged.
+________________
+
+
+18. Electronic Health Record Flow
+Patient Visit
+
+
+↓
+
+
+Doctor Notes
+
+
+↓
+
+
+Prescription
+
+
+↓
+
+
+Lab Reports
+
+
+↓
+
+
+Diagnosis
+
+
+↓
+
+
+Stored Permanently
+
+
+↓
+
+
+Available Across MH Network
+
+
+________________
+
+
+19. Caching Strategy
+Use Redis.
+Cache
+Doctor List
+
+
+Departments
+
+
+Medicine Search
+
+
+Available Slots
+
+
+Hospital List
+
+
+Avoid caching sensitive medical records.
+________________
+
+
+20. Error Handling
+Global Exception Handler
+Examples
+PatientNotFoundException
+
+
+AppointmentConflictException
+
+
+MedicineOutOfStockException
+
+
+UnauthorizedAccessException
+
+
+ReferralNotFoundException
+
+
+Consistent API responses.
+________________
+
+
+21. Logging Strategy
+Log
+Login
+
+
+Appointment Created
+
+
+Medicine Dispensed
+
+
+Referral Approved
+
+
+Record Updated
+
+
+Never log passwords or medical details.
+________________
+
+
+22. Audit Trail
+Every important action is tracked.
+User
+
+
+↓
+
+
+Action
+
+
+↓
+
+
+Time
+
+
+↓
+
+
+IP
+
+
+↓
+
+
+Old Value
+
+
+↓
+
+
+New Value
+
+
+Example
+Doctor edited prescription
+
+
+↓
+
+
+Audit Stored
+
+
+________________
+
+
+23. Notification Engine
+Triggers
+Appointment Booked
+
+
+↓
+
+
+SMS
+
+
+↓
+
+
+Email
+
+
+↓
+
+
+In-App Notification
+
+
+Future
+WhatsApp.
+________________
+
+
+24. File Storage
+Reports
+MRI
+
+
+CT Scan
+
+
+Blood Reports
+
+
+Prescriptions
+
+
+Referral Documents
+
+
+Store securely (object storage or encrypted file server), while saving only file metadata and references in the database.
+________________
+
+
+25. Deployment Architecture
+Browser
+
+
+↓
+
+
+Nginx
+
+
+↓
+
+
+React Frontend
+
+
+↓
+
+
+Node.js API
+
+
+↓
+
+
+Redis
+
+
+↓
+
+
+PostgreSQL
+
+
+↓
+
+
+File Storage
+
+
+↓
+
+
+Backup Server
+
+
+Dockerize each component for reproducible deployments.
+________________
+
+
+26. API Standards
+Use RESTful APIs with consistent conventions.
+Examples:
+GET    /patients/{id}
+POST   /appointments
+PUT    /appointments/{id}
+DELETE /appointments/{id}
+GET    /doctors?department=Orthopedics
+
+
+Use standard HTTP status codes (200, 201, 400, 401, 403, 404, 409, 500) and version APIs (/api/v1/...).
+________________
+
+
+27. Engineering Best Practices
+* Follow Clean Architecture boundaries.
+* Keep controllers thin and services rich.
+* Write reusable, testable components.
+* Apply dependency injection where possible.
+* Use DTOs instead of exposing database entities.
+* Validate all input on both client and server.
+* Maintain API documentation with OpenAPI/Swagger.
+* Enforce code quality with linting, formatting, and code reviews.
+* Target at least 80% unit test coverage for business logic.
+* Use Git feature branches with pull requests.
+________________
+
+
+Deliverables After Part 2
+By the end of this phase, the AI coding agent should understand:
+* The overall architecture and module boundaries.
+* How responsibilities are divided using OOP and SOLID principles.
+* The package and project structure.
+* The core entities and their relationships.
+* Authentication and authorization design.
+* The major workflows (appointments, referrals, pharmacy, EHR).
+* Which design patterns to apply and where.
+* Database philosophy and deployment approach.
+________________
+
+
+
+
+Military Healthcare Operating System (MHOS)
+Part 3 — Domain Modeling, Database Design, API Blueprint & Implementation Specifications
+Version: 1.0
+________________
+
+
+1. Core Design Philosophy
+The system is Domain Driven.
+Everything revolves around real military healthcare workflows.
+There are NO generic CRUD modules.
+Every module represents a business process.
+Patient
+
+
+↓
+
+
+Appointment
+
+
+↓
+
+
+Consultation
+
+
+↓
+
+
+Prescription
+
+
+↓
+
+
+Laboratory
+
+
+↓
+
+
+Pharmacy
+
+
+↓
+
+
+Referral
+
+
+↓
+
+
+Follow-up
+
+
+Every action creates history.
+Nothing is deleted.
+Everything is traceable.
+________________
+
+
+2. Complete Domain Modules
+The system consists of independent bounded contexts.
+Authentication
+
+
+Identity Management
+
+
+Patient Management
+
+
+Dependent Management
+
+
+Doctor Management
+
+
+Department Management
+
+
+Appointment Management
+
+
+Queue Management
+
+
+Consultation Management
+
+
+Electronic Health Record
+
+
+Prescription Management
+
+
+Pharmacy Inventory
+
+
+Laboratory
+
+
+Radiology
+
+
+Referral Management
+
+
+Notification Service
+
+
+Analytics
+
+
+Audit Service
+
+
+AI Recommendation Engine
+
+
+Document Service
+
+
+Each module owns its own business logic.
+________________
+
+
+3. Entity Relationship Model
+________________
+
+
+User
+Represents every authenticated person.
+Fields
+id
+
+
+serviceNumber
+
+
+username
+
+
+passwordHash
+
+
+roleId
+
+
+email
+
+
+phone
+
+
+status
+
+
+createdAt
+
+
+updatedAt
+
+
+________________
+
+
+Role
+Admin
+
+
+Doctor
+
+
+Patient
+
+
+Receptionist
+
+
+Lab Technician
+
+
+Pharmacist
+
+
+Referral Officer
+
+
+Command Medical Officer
+
+
+Super Admin
+
+
+________________
+
+
+Patient
+patientId
+
+
+userId
+
+
+defenceId
+
+
+bloodGroup
+
+
+dob
+
+
+gender
+
+
+unit
+
+
+rank
+
+
+retired
+
+
+dependentType
+
+
+emergencyContact
+
+
+address
+
+
+allergies
+
+
+photo
+
+
+currentHospital
+
+
+________________
+
+
+Family Member
+familyId
+
+
+patientId
+
+
+name
+
+
+relation
+
+
+bloodGroup
+
+
+dob
+
+
+gender
+
+
+dependentCardNumber
+
+
+One soldier
+↓
+Many dependents
+________________
+
+
+Hospital
+hospitalId
+
+
+name
+
+
+command
+
+
+city
+
+
+state
+
+
+latitude
+
+
+longitude
+
+
+phone
+
+
+email
+
+
+capacity
+
+
+icuBeds
+
+
+generalBeds
+
+
+________________
+
+
+Department
+departmentId
+
+
+hospitalId
+
+
+departmentName
+
+
+floor
+
+
+building
+
+
+hod
+
+
+________________
+
+
+Doctor
+doctorId
+
+
+departmentId
+
+
+specialization
+
+
+qualification
+
+
+experience
+
+
+availableToday
+
+
+roomNumber
+
+
+licenseNumber
+
+
+________________
+
+
+Doctor Schedule
+scheduleId
+
+
+doctorId
+
+
+day
+
+
+startTime
+
+
+endTime
+
+
+maxPatients
+
+
+leaveStatus
+
+
+________________
+
+
+Appointment
+appointmentId
+
+
+patientId
+
+
+doctorId
+
+
+departmentId
+
+
+date
+
+
+time
+
+
+status
+
+
+priority
+
+
+tokenNumber
+
+
+estimatedTime
+
+
+createdBy
+
+
+Status
+Booked
+
+
+Checked-In
+
+
+Waiting
+
+
+In Consultation
+
+
+Completed
+
+
+Cancelled
+
+
+No Show
+
+
+________________
+
+
+Consultation
+consultationId
+
+
+appointmentId
+
+
+doctorId
+
+
+symptoms
+
+
+diagnosis
+
+
+notes
+
+
+followUpDate
+
+
+________________
+
+
+Prescription
+prescriptionId
+
+
+consultationId
+
+
+doctorId
+
+
+patientId
+
+
+date
+
+
+________________
+
+
+Prescription Item
+medicineId
+
+
+dosage
+
+
+frequency
+
+
+duration
+
+
+remarks
+
+
+One Prescription
+↓
+Many Medicines
+________________
+
+
+Medicine
+medicineId
+
+
+genericName
+
+
+brandName
+
+
+manufacturer
+
+
+strength
+
+
+unit
+
+
+expiryDate
+
+
+batchNumber
+
+
+________________
+
+
+Inventory
+inventoryId
+
+
+medicineId
+
+
+hospitalId
+
+
+currentStock
+
+
+reservedStock
+
+
+minimumStock
+
+
+maximumStock
+
+
+reorderLevel
+
+
+________________
+
+
+Laboratory Test
+testId
+
+
+consultationId
+
+
+testName
+
+
+status
+
+
+result
+
+
+reportURL
+
+
+performedBy
+
+
+________________
+
+
+Referral
+referralId
+
+
+consultationId
+
+
+referredHospital
+
+
+reason
+
+
+status
+
+
+approvalOfficer
+
+
+documents
+
+
+trackingNumber
+
+
+________________
+
+
+Notification
+notificationId
+
+
+userId
+
+
+type
+
+
+title
+
+
+message
+
+
+status
+
+
+createdAt
+
+
+________________
+
+
+Audit Log
+auditId
+
+
+userId
+
+
+action
+
+
+entity
+
+
+entityId
+
+
+timestamp
+
+
+ipAddress
+
+
+________________
+
+
+4. Database Relationships
+Hospital
+
+
+↓
+
+
+Departments
+
+
+↓
+
+
+Doctors
+
+
+↓
+
+
+Schedules
+
+
+↓
+
+
+Appointments
+
+
+↓
+
+
+Consultations
+
+
+↓
+
+
+Prescriptions
+
+
+↓
+
+
+Medicines
+
+
+Patient
+↓
+Medical Records
+↓
+Lab Reports
+↓
+Referral
+↓
+History
+________________
+
+
+5. Index Strategy
+Large hospitals generate millions of records.
+Indexes
+Patient Defence ID
+
+
+Appointment Date
+
+
+Doctor ID
+
+
+Medicine Name
+
+
+Referral Number
+
+
+Token Number
+
+
+Hospital ID
+
+
+Composite Index
+Doctor + Date
+
+
+Department + Time
+
+
+Medicine + Hospital
+
+
+Patient + Date
+
+
+________________
+
+
+6. API Standard
+Version
+/api/v1
+
+
+Every response
+status
+
+
+message
+
+
+data
+
+
+timestamp
+
+
+Example
+{
+ "status":"success",
+ "message":"Appointment booked",
+ "data":{},
+ "timestamp":"..."
+}
+
+
+________________
+
+
+7. Authentication APIs
+POST /login
+
+
+POST /logout
+
+
+POST /refresh-token
+
+
+POST /forgot-password
+
+
+POST /reset-password
+
+
+________________
+
+
+8. Patient APIs
+GET /patients
+
+
+GET /patients/{id}
+
+
+PUT /patients/{id}
+
+
+DELETE /patients/{id}
+
+
+GET /patients/history
+
+
+GET /patients/reports
+
+
+________________
+
+
+9. Appointment APIs
+POST /appointments
+
+
+GET /appointments
+
+
+GET /appointments/{id}
+
+
+PUT /appointments/{id}
+
+
+DELETE /appointments/{id}
+
+
+GET /appointments/slots
+
+
+GET /appointments/queue
+
+
+________________
+
+
+10. Doctor APIs
+GET /doctors
+
+
+GET /doctors/{id}
+
+
+GET /doctors/available
+
+
+GET /doctors/schedule
+
+
+POST /doctor/prescription
+
+
+________________
+
+
+11. Pharmacy APIs
+GET /medicines
+
+
+GET /inventory
+
+
+POST /inventory
+
+
+PUT /inventory
+
+
+GET /inventory/search
+
+
+________________
+
+
+12. Referral APIs
+POST /referrals
+
+
+GET /referrals
+
+
+PUT /referrals
+
+
+GET /referrals/status
+
+
+________________
+
+
+13. Queue Algorithm
+Current hospitals
+FIFO
+
+
+Our algorithm
+Priority Queue
+
+
+Priority Score
+Emergency = 100
+
+
+Senior Citizen = 90
+
+
+Pregnant = 85
+
+
+Disabled = 80
+
+
+Child = 70
+
+
+Normal = 50
+
+
+If same score
+↓
+FIFO
+________________
+
+
+14. Appointment Booking Algorithm
+Patient selects Department
+
+
+↓
+
+
+System fetches doctors
+
+
+↓
+
+
+Doctor selected
+
+
+↓
+
+
+Fetch available schedule
+
+
+↓
+
+
+Generate token
+
+
+↓
+
+
+Estimate waiting time
+
+
+↓
+
+
+Reserve slot
+
+
+↓
+
+
+Notify patient
+
+
+________________
+
+
+15. Doctor Recommendation Engine
+Input
+Symptoms
+
+
+Age
+
+
+Gender
+
+
+Past Diseases
+
+
+AI maps
+↓
+Medical Department
+↓
+Available Doctor
+↓
+Confidence Score
+Example
+Chest Pain
+
+
+↓
+
+
+Cardiology
+
+
+98%
+
+
+________________
+
+
+16. Medicine Recommendation Flow
+Doctor prescribes medicine.
+↓
+Inventory checked automatically.
+If unavailable
+↓
+Suggest equivalent medicine.
+↓
+Doctor approves substitution.
+________________
+
+
+17. Referral Workflow
+Doctor
+
+
+↓
+
+
+Referral Created
+
+
+↓
+
+
+Medical Officer Review
+
+
+↓
+
+
+Approval
+
+
+↓
+
+
+Hospital Assigned
+
+
+↓
+
+
+Patient Notification
+
+
+↓
+
+
+Document Transfer
+
+
+↓
+
+
+Treatment
+
+
+↓
+
+
+Referral Closed
+
+
+Every step is timestamped.
+________________
+
+
+18. Patient Timeline
+Instead of showing files,
+display a chronological health journey.
+2024
+
+
+Blood Test
+
+
+↓
+
+
+2024
+
+
+ENT Consultation
+
+
+↓
+
+
+2025
+
+
+MRI
+
+
+↓
+
+
+2025
+
+
+Referral
+
+
+↓
+
+
+2026
+
+
+Follow-up
+
+
+Doctors understand history in seconds.
+________________
+
+
+19. QR Health Card
+Every patient receives
+QR
+
+
+↓
+
+
+Patient ID
+
+
+↓
+
+
+Blood Group
+
+
+↓
+
+
+Emergency Contact
+
+
+↓
+
+
+Allergies
+
+
+↓
+
+
+Current Medication
+
+
+Hospital staff scan to retrieve authorized information instantly.
+________________
+
+
+20. AI Modules (Phase 2)
+AI Symptom Triage
+Patient enters symptoms.
+↓
+Suggest likely department.
+↓
+Recommend urgency.
+________________
+
+
+Doctor Recommendation
+Factors
+Availability
+
+
+Specialization
+
+
+Experience
+
+
+Waiting Time
+
+
+Success Rate
+
+
+________________
+
+
+Pharmacy Forecasting
+Historical medicine usage.
+↓
+Predict demand.
+↓
+Generate purchase alerts.
+________________
+
+
+Bed Prediction
+Forecast occupancy using historical admissions.
+________________
+
+
+21. UI Portals
+Patient Portal
+* Dashboard
+* Book Appointment
+* Live Queue
+* Prescriptions
+* Lab Reports
+* Referral Tracking
+* Family Members
+* Notifications
+* Medical Timeline
+________________
+
+
+Doctor Portal
+* Today's Patients
+* Consultation Screen
+* Medical History
+* Prescription Builder
+* Lab Orders
+* Referral Creation
+* Follow-up Scheduling
+________________
+
+
+Pharmacy Portal
+* Live Inventory
+* Prescription Verification
+* Medicine Dispensing
+* Stock Alerts
+* Inventory Reports
+________________
+
+
+Admin Portal
+* Hospital Dashboard
+* User Management
+* Department Management
+* Doctor Scheduling
+* Referral Analytics
+* Inventory Analytics
+* Audit Logs
+* System Settings
+________________
+
+
+22. Security Model
+Healthcare data is highly sensitive.
+Implement:
+* Role-Based Access Control (RBAC)
+* JWT access and refresh tokens
+* AES-256 encryption for sensitive fields
+* Password hashing with Argon2 or bcrypt
+* Audit logging for every record change
+* API rate limiting
+* Input validation
+* SQL injection prevention
+* XSS and CSRF protection
+* Secure file uploads
+* Encrypted backups
+________________
+
+
+23. Testing Strategy
+Unit Tests
+* Services
+* Utility functions
+* Validation
+Integration Tests
+* API to database
+* Authentication flow
+* Appointment workflow
+End-to-End Tests
+* Patient books appointment
+* Doctor consults
+* Pharmacy dispenses
+* Referral completed
+Performance Tests
+* 10,000 concurrent users
+* Queue response time
+* Inventory search latency
+Security Tests
+* Unauthorized access attempts
+* Token expiry
+* Role permission checks
+* Injection attack simulations
+________________
+
+
+24. Definition of Done (DoD)
+A module is considered complete only if:
+* Business requirements are implemented.
+* Unit and integration tests pass.
+* API documentation is updated.
+* Validation is complete.
+* Error handling is implemented.
+* Security checks pass.
+* Logging and audit entries are generated.
+* UI is responsive and accessible.
+* Code follows SOLID principles.
+* Code review is completed.
+________________
+
+
+
+
+Military Healthcare Operating System (MHOS)
+Part 4 – UI/UX Design Specification, User Journey & Product Experience
+Version: 1.0
+Document Type: Product Design Specification (PDS)
+________________
+
+
+1. Design Philosophy
+Vision
+The interface should feel like a mission-critical healthcare system, not an e-commerce website.
+Design Principles:
+* Fast
+* Minimal
+* Professional
+* Secure
+* Accessible
+* Mobile-first
+* Elderly-friendly
+* Military-inspired (without becoming overly decorative)
+The UI should reduce cognitive load for stressed patients and healthcare staff.
+________________
+
+
+2. Design Language
+Color Palette
+Primary
+* Military Green (#355E3B)
+* Deep Navy (#1E3A5F)
+Secondary
+* White
+* Light Gray
+* Soft Blue
+Status Colors
+* Green = Available
+* Yellow = Waiting
+* Red = Emergency
+* Blue = Information
+* Orange = Referral Pending
+________________
+
+
+Typography
+Headers:
+* Inter Bold
+* 24–36px
+Body:
+* Inter Regular
+* 16–18px
+Buttons:
+* 16px Medium
+Accessibility:
+* Minimum font size: 16px
+* High contrast
+* Large tap targets (≥44px)
+________________
+
+
+3. Navigation Structure
+Login
+│
+├── Patient Portal
+├── Doctor Portal
+├── Pharmacy Portal
+├── Lab Portal
+├── Referral Portal
+└── Admin Portal
+
+
+Each portal has independent navigation based on role.
+________________
+
+
+4. Login Experience
+Features
+* Username / Defence ID
+* Password
+* OTP (optional)
+* CAPTCHA
+* Forgot Password
+* Remember Device
+After login:
+Authenticate
+
+
+↓
+
+
+Role Detection
+
+
+↓
+
+
+Redirect
+
+
+↓
+
+
+Dashboard
+
+
+________________
+
+
+5. Patient Portal
+Dashboard
+Immediately after login, the patient should see:
+------------------------------------
+Good Morning, Captain Sharma
+
+
+Next Appointment
+
+
+10:30 AM
+
+
+Orthopedic
+
+
+Room 203
+
+
+------------------------------------
+
+
+Current Queue
+
+
+Now Serving : 18
+
+
+Your Token : 23
+
+
+Estimated Time
+
+
+22 Minutes
+
+
+------------------------------------
+
+
+Medicine Reminder
+
+
+✓ Vitamin D
+
+
+✓ Calcium
+
+
+------------------------------------
+
+
+Recent Reports
+
+
+Blood Test
+
+
+MRI
+
+
+Prescription
+
+
+------------------------------------
+
+
+Quick Actions
+
+
+Book Appointment
+
+
+Search Doctor
+
+
+Search Medicine
+
+
+Emergency SOS
+
+
+The dashboard answers the four most common questions:
+* When is my appointment?
+* How long do I wait?
+* What medicine should I take?
+* What should I do next?
+________________
+
+
+6. Smart Appointment Booking
+Step 1
+Choose Hospital
+↓
+Step 2
+Choose Department
+↓
+Step 3
+Choose Doctor
+↓
+Step 4
+Available Slots
+↓
+Step 5
+Confirmation
+↓
+Token Generated
+Unlike normal HMS systems, users should never manually guess a doctor.
+The system should recommend one automatically.
+________________
+
+
+7. Doctor Search
+Instead of
+Doctor List
+
+
+Use
+Search
+
+
+↓
+
+
+"I have knee pain"
+
+
+↓
+
+
+AI
+
+
+↓
+
+
+Orthopedic Department
+
+
+↓
+
+
+3 Available Doctors
+
+
+↓
+
+
+Waiting Time
+
+
+↓
+
+
+Book
+
+
+Much more natural.
+________________
+
+
+8. Live Queue Screen
+Large display
+Now Serving
+
+
+Token 32
+
+
+----------------
+
+
+Your Token
+
+
+37
+
+
+----------------
+
+
+Estimated Wait
+
+
+18 Minutes
+
+
+----------------
+
+
+Doctor
+
+
+Dr. Mehta
+
+
+----------------
+
+
+Room
+
+
+204
+
+
+Real-time updates via WebSockets.
+________________
+
+
+9. Medical Timeline
+Instead of folders,
+use timeline.
+2024
+
+
+Blood Test
+
+
+↓
+
+
+Eye Surgery
+
+
+↓
+
+
+2025
+
+
+MRI
+
+
+↓
+
+
+ENT Consultation
+
+
+↓
+
+
+Prescription
+
+
+↓
+
+
+Referral
+
+
+Doctors understand patient history instantly.
+________________
+
+
+10. QR Health Card
+Patient profile contains
+QR Code
+
+
+↓
+
+
+Scan
+
+
+↓
+
+
+Emergency Profile
+
+
+↓
+
+
+Blood Group
+
+
+↓
+
+
+Allergies
+
+
+↓
+
+
+Current Medicines
+
+
+Perfect for emergencies.
+________________
+
+
+11. Family Dashboard
+One Defence ID
+↓
+Family Members
+Captain
+
+
+↓
+
+
+Wife
+
+
+↓
+
+
+Daughter
+
+
+↓
+
+
+Parents
+
+
+Each dependent has
+* Appointment
+* Reports
+* Medicines
+* Vaccinations
+________________
+
+
+12. Doctor Portal
+Today's Dashboard
+Patients Today
+
+
+26
+
+
+Waiting
+
+
+7
+
+
+Completed
+
+
+12
+
+
+Emergency
+
+
+2
+
+
+Follow-ups
+
+
+5
+
+
+Quick overview.
+________________
+
+
+13. Consultation Screen
+Split layout
+--------------------------------
+
+
+Patient Timeline
+
+
+Medical History
+
+
+Allergies
+
+
+Lab Reports
+
+
+--------------------------------
+
+
+Diagnosis Box
+
+
+Prescription Builder
+
+
+Lab Orders
+
+
+Referral Button
+
+
+--------------------------------
+
+
+Everything on one screen.
+________________
+
+
+14. Smart Prescription Builder
+Instead of typing,
+Doctor searches medicine.
+Paracetamol
+
+
+↓
+
+
+Dosage
+
+
+↓
+
+
+Morning
+
+
+↓
+
+
+Night
+
+
+↓
+
+
+7 Days
+
+
+↓
+
+
+Save
+
+
+Inventory checked instantly.
+________________
+
+
+15. Pharmacy Portal
+Dashboard
+Medicines Available
+
+
+4210
+
+
+Low Stock
+
+
+21
+
+
+Expired
+
+
+5
+
+
+Today's Dispensing
+
+
+213
+
+
+Reservations
+
+
+44
+
+
+________________
+
+
+16. Pharmacy Workflow
+Prescription
+↓
+QR Scan
+↓
+Medicine List
+↓
+Inventory Check
+↓
+Dispense
+↓
+Stock Updated
+↓
+Patient Notified
+No manual searching.
+________________
+
+
+17. Referral Portal
+Dashboard
+Pending
+
+
+12
+
+
+Approved
+
+
+31
+
+
+Rejected
+
+
+2
+
+
+Transferred
+
+
+17
+
+
+________________
+
+
+Referral Details
+Patient
+
+
+Reason
+
+
+Supporting Reports
+
+
+Approving Officer
+
+
+Current Status
+
+
+Assigned Hospital
+
+
+Documents
+
+
+Every step tracked.
+________________
+
+
+18. Laboratory Portal
+Today's Tests
+
+
+Blood
+
+
+MRI
+
+
+CT
+
+
+X-Ray
+
+
+Pending
+
+
+Completed
+
+
+Workflow
+Patient
+↓
+Sample Collection
+↓
+Testing
+↓
+Report Upload
+↓
+Doctor Notification
+________________
+
+
+19. Admin Dashboard
+The admin dashboard should answer operational questions at a glance.
+Today's Patients
+
+
+Doctors Available
+
+
+Medicine Shortage
+
+
+Average Wait Time
+
+
+Referral Pending
+
+
+Beds Available
+
+
+Emergency Cases
+
+
+Revenue (optional)
+
+
+Charts
+* OPD Trends
+* Department Load
+* Medicine Consumption
+* Referral Trends
+________________
+
+
+20. Search Everywhere
+Global Search Bar
+Search
+Patient
+
+
+Doctor
+
+
+Medicine
+
+
+Referral
+
+
+Appointment
+
+
+Hospital
+
+
+Department
+
+
+One search.
+Everything.
+________________
+
+
+21. Notifications
+Patient receives
+Appointment Confirmed
+
+
+↓
+
+
+Medicine Ready
+
+
+↓
+
+
+Lab Report Uploaded
+
+
+↓
+
+
+Referral Approved
+
+
+↓
+
+
+Doctor Running Late
+
+
+↓
+
+
+Medicine Reminder
+
+
+________________
+
+
+22. Emergency Mode
+Large button
+Emergency SOS
+
+
+Press
+↓
+Location
+↓
+Nearest Military Hospital
+↓
+Ambulance
+↓
+Medical Record Opens
+↓
+Emergency Contact Alert
+________________
+
+
+23. Offline Mode
+Military hospitals may lose connectivity.
+Offline features:
+* View downloaded reports
+* Show appointment QR
+* Cached prescriptions
+* Sync automatically when internet returns
+________________
+
+
+24. Accessibility
+Designed for:
+* Elderly veterans
+* Disabled patients
+* Families unfamiliar with technology
+Features:
+* High-contrast mode
+* Adjustable font sizes
+* Keyboard navigation
+* Screen-reader support
+* Hindi + English toggle
+* Voice search
+________________
+
+
+25. Design System
+Reusable Components:
+* Button
+* Input
+* Search Bar
+* Card
+* Table
+* Timeline
+* Badge
+* Modal
+* Toast
+* Calendar
+* Queue Widget
+* Medicine Card
+* Patient Card
+* Doctor Card
+* Analytics Chart
+* QR Component
+These components ensure consistency across all portals.
+________________
+
+
+26. UI State Guidelines
+Every screen must handle:
+* Loading
+* Empty State
+* Success
+* Error
+* Offline
+* Unauthorized
+Example:
+Instead of showing a blank table:
+No Appointments Found
+
+
+Book your first appointment
+
+
+________________
+
+
+27. Mobile Experience
+Patient app should support:
+Bottom Navigation
+Home
+
+
+Appointments
+
+
+Medical Records
+
+
+Notifications
+
+
+Profile
+
+
+Doctors may primarily use tablets, while admins use desktop dashboards.
+________________
+
+
+28. Micro-Interactions
+Small details that improve usability:
+* Smooth token updates
+* Success animation after booking
+* Skeleton loaders while fetching data
+* Toast notifications
+* QR scan animation
+* Real-time status badges
+Keep animations subtle and fast.
+________________
+
+
+29. Product Roadmap
+Version 1.0
+* Authentication
+* Appointments
+* Queue
+* Doctors
+* Patient Records
+* Pharmacy
+* Referrals
+Version 2.0
+* AI Symptom Triage
+* Doctor Recommendation
+* Predictive Inventory
+* QR Health Cards
+* Family Management
+Version 3.0
+* Voice Assistant
+* Telemedicine
+* Wearable Device Integration
+* Military Health Analytics
+* Multi-Hospital Synchronization
+________________
+
+
+30. Acceptance Criteria for UI
+Every screen must satisfy:
+* Complete within 3 clicks for common actions.
+* Responsive on mobile, tablet, and desktop.
+* Accessible (WCAG AA target).
+* Loading time under 2 seconds on standard broadband.
+* Clear error messages with recovery guidance.
+* Consistent design language and reusable components.
+* No duplicated workflows across portals.
+________________
+
+
+Final Product Vision
+The goal is not to build another Hospital Management System.
+The goal is to build a Military Healthcare Operating System (MHOS) that addresses the unique needs of military hospitals and their beneficiaries through:
+* Digital-first workflows.
+* AI-assisted decision support.
+* Real-time operational visibility.
+* Secure, portable medical records.
+* Excellent user experience for patients, doctors, pharmacists, and administrators.
+________________
+
+
+This final part should not just be another document—it should become the Master Engineering Specification. This is the document you give to an AI coding agent (Cursor, Claude Code, OpenHands, Copilot Workspace, etc.) so it can build the project with minimal back-and-forth.
+Below is the structure I recommend. Because of ChatGPT's maximum response length, it's not possible to fit every remaining technical detail (hundreds of pages worth of material) into a single response. A production-ready specification for this system would realistically exceed 250–400 pages.
+So here's the final master blueprint and everything it should contain.
+________________
+
+
+Military Healthcare Operating System (MHOS)
+Part 5 – Master Engineering Specification & AI Development Blueprint
+1. Project Goal
+Build a production-grade Military Healthcare Operating System that solves real operational problems in Military Hospitals.
+The system must be modular, scalable, secure, maintainable, testable, and AI-ready.
+________________
+
+
+2. AI Agent Rules
+The coding agent must follow these rules throughout development.
+General
+* Never duplicate business logic.
+* Never bypass validation.
+* Never access the database directly from controllers.
+* Never hardcode secrets.
+* Never expose internal IDs unnecessarily.
+* Never return inconsistent API responses.
+* Never mix UI logic with business logic.
+* Always write reusable code.
+* Always document public methods.
+* Always include tests for business logic.
+________________
+
+
+Code Quality
+* SOLID Principles
+* DRY
+* KISS
+* YAGNI
+* Clean Architecture
+* Domain Driven Design
+* Repository Pattern
+* Dependency Injection
+* Immutable DTOs
+________________
+
+
+3. Technology Stack
+Frontend
+* React
+* TypeScript
+* Tailwind CSS
+* React Router
+* React Query
+* Zustand
+* React Hook Form
+* Zod
+* Framer Motion
+* Recharts
+________________
+
+
+Backend
+* Node.js
+* Express.js
+* TypeScript
+* Prisma ORM
+* PostgreSQL
+* Redis
+* BullMQ
+* Socket.IO
+________________
+
+
+AI
+* Python FastAPI microservice
+* scikit-learn
+* LangChain
+* OpenAI/Open-source LLM
+* FAISS (optional knowledge retrieval)
+________________
+
+
+DevOps
+* Docker
+* Docker Compose
+* GitHub Actions
+* Nginx
+* Prometheus
+* Grafana
+* Loki
+* Sentry
+________________
+
+
+4. Folder Structure
+apps/
+  web/
+  api/
+  ai-service/
+
+
+packages/
+  ui/
+  config/
+  types/
+  utils/
+
+
+docs/
+  api/
+  architecture/
+  diagrams/
+
+
+infra/
+  docker/
+  nginx/
+  monitoring/
+
+
+scripts/
+tests/
+
+
+________________
+
+
+5. Git Strategy
+main
+
+
+develop
+
+
+feature/auth
+
+
+feature/patient
+
+
+feature/pharmacy
+
+
+feature/referral
+
+
+release
+
+
+hotfix
+
+
+________________
+
+
+6. Milestone Plan
+Milestone 1
+Authentication
+Milestone 2
+Patient Management
+Milestone 3
+Doctor Management
+Milestone 4
+Appointment System
+Milestone 5
+Queue Engine
+Milestone 6
+Electronic Health Records
+Milestone 7
+Pharmacy
+Milestone 8
+Laboratory
+Milestone 9
+Referral
+Milestone 10
+Notifications
+Milestone 11
+Analytics
+Milestone 12
+AI Modules
+Milestone 13
+Deployment
+________________
+
+
+7. Definition of Ready
+Before coding any module:
+* Requirements approved.
+* API contract defined.
+* Database schema finalized.
+* Validation rules written.
+* Test cases identified.
+* UI approved.
+* Security review complete.
+________________
+
+
+8. Definition of Done
+A feature is complete only when:
+* Code builds successfully.
+* Unit tests pass.
+* Integration tests pass.
+* API documented.
+* UI responsive.
+* Accessibility checked.
+* Logging added.
+* Audit events generated.
+* Security reviewed.
+* Performance verified.
+* Peer/AI review completed.
+________________
+
+
+9. Coding Standards
+Naming:
+* camelCase for variables.
+* PascalCase for classes/components.
+* UPPER_SNAKE_CASE for constants.
+Functions:
+* Maximum ~40 lines where practical.
+* Single responsibility.
+* No nested logic beyond 2–3 levels.
+* Early returns preferred.
+________________
+
+
+10. Validation Rules
+Examples:
+Patient
+* Defence ID unique.
+* Valid phone.
+* Valid email.
+* DOB not in future.
+Appointment
+* Doctor available.
+* Slot free.
+* No duplicate booking.
+* Working hours only.
+Medicine
+* Expiry date required.
+* Stock ≥ 0.
+________________
+
+
+11. Error Response Standard
+{
+  "success": false,
+  "code": "APPOINTMENT_CONFLICT",
+  "message": "Selected slot is already booked.",
+  "details": [],
+  "timestamp": "...",
+  "requestId": "..."
+}
+
+
+________________
+
+
+12. Logging Policy
+Log:
+* Login
+* Logout
+* Appointment created
+* Prescription issued
+* Inventory updated
+* Referral approved
+* Record modified
+Never log:
+* Passwords
+* JWTs
+* Medical notes
+* Personally sensitive information in plaintext
+________________
+
+
+13. Backup Strategy
+* Nightly database backup.
+* Weekly full backup.
+* Point-in-time recovery.
+* Encrypted backups.
+* Restore tested regularly.
+________________
+
+
+14. Monitoring
+Track:
+* API latency.
+* Error rate.
+* Queue length.
+* DB CPU.
+* Redis usage.
+* Memory.
+* Failed jobs.
+Alerts for:
+* API failures.
+* Low medicine stock.
+* Backup failures.
+* High response times.
+________________
+
+
+15. Security Checklist
+* HTTPS everywhere.
+* JWT rotation.
+* Refresh tokens.
+* Rate limiting.
+* RBAC.
+* Input validation.
+* Output encoding.
+* Secure cookies.
+* CSP headers.
+* Encryption at rest.
+* Encryption in transit.
+* Audit trail.
+* MFA for admins.
+________________
+
+
+16. Performance Goals
+* Login < 500 ms.
+* Appointment search < 2 s.
+* Queue updates < 1 s.
+* Inventory search < 1 s.
+* Dashboard < 2 s.
+* Support 10,000 concurrent users (design target).
+________________
+
+
+17. Testing Pyramid
+* Unit Tests (~70%)
+* Integration Tests (~20%)
+* End-to-End Tests (~10%)
+Include:
+* Happy path.
+* Edge cases.
+* Invalid input.
+* Permission checks.
+* Concurrent booking.
+________________
+
+
+18. Documentation
+Maintain:
+* README.
+* API docs (OpenAPI/Swagger).
+* ERD.
+* UML.
+* Architecture Decision Records (ADRs).
+* Deployment guide.
+* User manuals.
+* Admin manual.
+* Troubleshooting guide.
+________________
+
+
+19. AI Features Roadmap
+AI Symptom Triage
+Maps symptoms to likely departments.
+Doctor Recommendation
+Ranks doctors using:
+* Specialty
+* Availability
+* Waiting time
+* Historical outcomes (future)
+Predictive Pharmacy
+Forecasts stock needs.
+Smart Queue
+Dynamically adjusts estimated wait times.
+AI Medical Summary
+Summarizes patient history for doctors.
+________________
+
+
+20. Future Integrations
+* SMS gateway.
+* Email provider.
+* Push notifications.
+* QR scanners.
+* Barcode scanners.
+* Video consultation.
+* Payment gateway (if required later).
+* National health systems (where applicable).
+________________
+
+
+21. Risks & Mitigations
+Risk
+	Mitigation
+	Double booking
+	Transactions + optimistic locking
+	Data breach
+	Encryption + RBAC + audits
+	Network outage
+	Offline cache + sync
+	Stock mismatch
+	Reservation system + reconciliation
+	Lost reports
+	Object storage + backups
+	Poor AI suggestions
+	Human review remains authoritative
+	________________
+
+
+22. Suggested Timeline (24 Weeks)
+Weeks
+	Deliverable
+	1–2
+	Requirements & Design
+	3–5
+	Authentication & Users
+	6–8
+	Appointments & Queue
+	9–11
+	Doctors & EHR
+	12–14
+	Pharmacy & Lab
+	15–17
+	Referrals & Notifications
+	18–20
+	Admin Dashboard & Analytics
+	21–22
+	AI Modules
+	23
+	Testing & Optimization
+	24
+	Deployment & Documentation
+	________________
+
+
+23. Portfolio Deliverables
+By project completion, prepare:
+* Source code repository.
+* Live demo (web).
+* Architecture diagrams.
+* API documentation.
+* Database ERD.
+* UML diagrams.
+* Test reports.
+* Deployment guide.
+* Demo video (5–10 minutes).
+* Project presentation (15–20 slides).
+* Technical report (50–100 pages).
+________________
+
+
+24. Capstone Enhancements
+To make the project exceptional:
+* Cross-Military Hospital Health Record Synchronization.
+* AI-generated consultation summaries.
+* Predictive OPD load forecasting.
+* Digital command dashboard.
+* Medical readiness tracking for active personnel.
+* Offline-first capability.
+* Real-time queue analytics.
+* Secure QR emergency profile.
+* AI-powered pharmacy demand forecasting.
+* Family/dependent health management.
+________________
+
+
+25. Final Architecture
+                   React Web
+                         │
+                 Authentication
+                         │
+                  API Gateway Layer
+                         │
+ ┌──────────┬──────────┬──────────┬──────────┐
+ │          │          │          │          │
+Patient  Doctor  Pharmacy  Referral  Analytics
+ │          │          │          │          │
+ └──────────┴──────────┴──────────┴──────────┘
+              Shared Domain Services
+                         │
+     Notification │ Audit │ File │ AI Gateway
+                         │
+              PostgreSQL + Redis
+                         │
+                 Object Storage
+                         │
+              Monitoring Stack
+
+
+________________
+
+
+26. What Will Make This Project Stand Out
+Most student Hospital Management Systems include only:
+* Login
+* Patient CRUD
+* Doctor CRUD
+* Appointment CRUD
+* Billing
+This project should instead demonstrate:
+* Real operational workflow modeling.
+* Domain-Driven Design (DDD).
+* SOLID architecture.
+* Clean Architecture.
+* Secure RBAC and audit trails.
+* AI-assisted healthcare workflows.
+* Real-time systems (queues, notifications).
+* Scalable deployment.
+* Military-specific business processes.
+* Professional engineering documentation.
+________________
+
+
+One Recommendation That Will Make This a Top-Tier Project
+If your ambition is to build something that could genuinely impress recruiters or even be piloted in a defense healthcare setting, I would add one more document that most student projects never include:
+Part 6 (Optional but Highly Valuable): Enterprise Architecture & Product Book
+This would include:
+* C4 Architecture Diagrams (Context, Container, Component, Code).
+* BPMN diagrams for every business process.
+* Sequence diagrams for all major workflows.
+* UML class diagrams.
+* Complete ER diagrams with constraints and indexes.
+* State machines for appointments, referrals, and prescriptions.
+* Wireframes for every screen.
+* Design system specification (buttons, typography, spacing, accessibility).
+* OpenAPI specification for every endpoint.
+* Threat model (STRIDE) and security review.
+* ADRs explaining key architectural decisions.
+* Sprint backlog with user stories and acceptance criteria.
+* Infrastructure-as-Code plan (Docker/Kubernetes).
+* Disaster recovery and business continuity plan.
+* Observability dashboards.
+* Performance testing scenarios.
+* User acceptance testing (UAT) scripts.
+* Maintenance roadmap and future feature strategy.
+That level of documentation is comparable to what many enterprise software teams produce before building large systems, and it would make your project look far beyond a typical university capstone.
+________________
+
+
+27. Development Progress Tracking (Agent Pointer)
+Current State: Milestone 7 (AI Service Integration) Completed
+Last Agent Interaction: 2026-07-05
+Work Completed:
+- Monorepo structure setup using npm workspaces
+- Shared packages boilerplate initialized
+- React + TypeScript + Tailwind CSS dashboard UI implemented with interactive CRUD components (Patient & Doctor management, Appointment queue tracking, Pharmacy inventory, Referral tracker, AI Symptom Triage panel)
+- Express + Prisma and FastAPI project boilerplates initialized
+- pointer.txt created at root directory for rapid handoff
+- docker-compose.yml created with PostgreSQL and Redis configurations
+- Prisma Schema containing database tables for all core military entities designed
+- Express Authentication APIs (/login, /register, /me) and RBAC middlewares implemented
+- Login UI screen with local mock fallback simulation integrated on frontend
+- Complete CRUD and search REST APIs for Patient Management in Express API with RBAC checks
+- Connected frontend patient CRUD operations to backend endpoints with robust offline mock fallback
+- Complete REST APIs for Doctor Management, schedules, and prescription submission in Express API
+- Connected frontend doctor CRUD operations (saving, name cache seeding, availability toggles) to backend endpoints with offline mock fallback
+- Complete REST APIs for booking, queue rosters, slot calculation, and status tracking in Express API
+- Connected frontend appointment booking and queue advancement controls to backend REST endpoints with offline mock fallback
+- Complete REST APIs for medicine list, inventory levels, search, batch creator, and stock updates in Express API
+- Connected frontend pharmacy stock adjustment panels to backend REST endpoints with offline mock fallback
+- Complete REST APIs for referral board requests, approvals, and status metrics in Express API
+- Connected frontend referral board approvals panel to backend REST endpoints with offline mock fallback
+- Setup FastAPI microservice on port 8000 for medical diagnostics and triage classification mapping
+- Connected frontend AI Triage panel to FastAPI backend with robust offline mock fallback

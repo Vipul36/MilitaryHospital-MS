@@ -1,0 +1,20 @@
+{
+  "name": "mhshms-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Military Hospital Smart Healthcare Management System (MHSHMS) Monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w @mhshms/api\" \"npm run dev -w @mhshms/web\"",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "db:backup": "ts-node -T -P apps/api/tsconfig.json scripts/db-backup-tool.ts backup",
+    "db:restore": "ts-node -T -P apps/api/tsconfig.json scripts/db-backup-tool.ts restore"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
