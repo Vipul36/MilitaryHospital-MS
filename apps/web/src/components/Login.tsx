@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, Lock, User, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import type { UserRole } from '@mhshms/types';
+import { API_BASE_URL } from '../config/api';
 
 interface LoginProps {
   onLoginSuccess: (user: any, token: string) => void;
@@ -22,7 +23,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
 
     try {
       // Attempt backend authentication
-      const response = await fetch('http://localhost:5001/api/v1/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

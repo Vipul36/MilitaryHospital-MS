@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
+import { API_BASE_URL, getWsUrl } from './config/api';
 
 import Login from './components/Login';
 import { 
@@ -347,7 +348,7 @@ export default function App() {
   const fetchNotifications = useCallback(async () => {
     if (!token || token.startsWith('mock-')) return;
     try {
-      const res = await fetch('http://localhost:5001/api/v1/notifications', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/notifications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -369,7 +370,7 @@ export default function App() {
       return;
     }
     try {
-      await fetch('http://localhost:5001/api/v1/notifications/mark-all-read', {
+      await fetch(`${API_BASE_URL}/api/v1/notifications/mark-all-read`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -387,7 +388,7 @@ export default function App() {
       return;
     }
     try {
-      await fetch(`http://localhost:5001/api/v1/notifications/${notifId}`, {
+      await fetch(`${API_BASE_URL}/api/v1/notifications/${notifId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -470,8 +471,8 @@ export default function App() {
       if (userId) params.set('userId', userId);
 
       const [logsRes, summaryRes] = await Promise.all([
-        fetch(`http://localhost:5001/api/v1/audit?${params}`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch('http://localhost:5001/api/v1/audit/summary', { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE_URL}/api/v1/audit?${params}`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE_URL}/api/v1/audit/summary`, { headers: { 'Authorization': `Bearer ${token}` } }),
       ]);
 
       if (logsRes.ok) {
@@ -509,7 +510,7 @@ export default function App() {
     const filename = `pharmacy_inventory_${dateStr}.csv`;
 
     try {
-      const resp = await fetch('http://localhost:5001/api/v1/inventory/export', {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/inventory/export`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -567,7 +568,7 @@ export default function App() {
     if (auditFilterUser)   params.set('userId', auditFilterUser);
 
     try {
-      const resp = await fetch(`http://localhost:5001/api/v1/audit/export?${params}`, {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/audit/export?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -656,7 +657,7 @@ export default function App() {
       return;
     }
     try {
-      const resp = await fetch(`http://localhost:5001/api/v1/patients/history?patientId=${patientId}`, {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/patients/history?patientId=${patientId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (resp.ok) {
@@ -680,7 +681,7 @@ export default function App() {
     const filename = `pharmacy_inventory_${dateStr}.xlsx`;
 
     try {
-      const resp = await fetch('http://localhost:5001/api/v1/inventory/export-xlsx', {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/inventory/export-xlsx`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (resp.ok) {
@@ -709,7 +710,7 @@ export default function App() {
     if (auditFilterUser)   params.set('userId', auditFilterUser);
 
     try {
-      const resp = await fetch(`http://localhost:5001/api/v1/audit/export-xlsx?${params}`, {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/audit/export-xlsx?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (resp.ok) {
@@ -733,7 +734,7 @@ export default function App() {
     const filename = `visit_history_${defenceId}_${dateStr}.pdf`;
 
     try {
-      const resp = await fetch(`http://localhost:5001/api/v1/patients/${patientId}/history/export-pdf`, {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/patients/${patientId}/history/export-pdf`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (resp.ok) {
@@ -756,7 +757,7 @@ export default function App() {
     const filename = `visit_history_${defenceId}_${dateStr}.csv`;
 
     try {
-      const resp = await fetch(`http://localhost:5001/api/v1/patients/${patientId}/history/export-csv`, {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/patients/${patientId}/history/export-csv`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (resp.ok) {
@@ -800,7 +801,7 @@ export default function App() {
     const filename = `visit_history_${defenceId}_${dateStr}.xlsx`;
 
     try {
-      const resp = await fetch(`http://localhost:5001/api/v1/patients/${patientId}/history/export-xlsx`, {
+      const resp = await fetch(`${API_BASE_URL}/api/v1/patients/${patientId}/history/export-xlsx`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (resp.ok) {
@@ -861,8 +862,8 @@ export default function App() {
       const params = new URLSearchParams({ limit: '50' });
       if (statusFilter) params.set('status', statusFilter);
       const [reportsRes, summaryRes] = await Promise.all([
-        fetch(`http://localhost:5001/api/v1/lab-reports?${params}`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch('http://localhost:5001/api/v1/lab-reports/summary', { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE_URL}/api/v1/lab-reports?${params}`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE_URL}/api/v1/lab-reports/summary`, { headers: { 'Authorization': `Bearer ${token}` } }),
       ]);
       if (reportsRes.ok) { const d = await reportsRes.json(); if (d.status === 'success') setLabReports(d.data); }
       if (summaryRes.ok) { const s = await summaryRes.json(); if (s.status === 'success') setLabSummary(s.data); }
@@ -876,7 +877,7 @@ export default function App() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5001/api/v1/lab-reports/${testId}/pdf`, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/lab-reports/${testId}/pdf`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!response.ok) throw new Error('Failed to generate PDF');
@@ -907,7 +908,7 @@ export default function App() {
     ));
     if (!token || token.startsWith('mock-')) { applyLocal(); setLabModal({ open: false, report: null }); return; }
     try {
-      const res = await fetch(`http://localhost:5001/api/v1/lab-reports/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/v1/lab-reports/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ status: labUpdateForm.status || undefined, result: labUpdateForm.result || undefined, performedBy: labUpdateForm.performedBy || undefined })
@@ -928,7 +929,7 @@ export default function App() {
       setLabNewModal(false); setLabNewForm({ testName: '', performedBy: '' }); return;
     }
     try {
-      const res = await fetch('http://localhost:5001/api/v1/lab-reports', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/lab-reports`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ testName: labNewForm.testName, performedBy: labNewForm.performedBy || undefined })
       });
@@ -993,8 +994,8 @@ export default function App() {
       if (roleFilter) params.set('role', roleFilter);
       if (statusFilter) params.set('status', statusFilter);
       const [usersRes, summaryRes] = await Promise.all([
-        fetch(`http://localhost:5001/api/v1/users?${params}`, { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch('http://localhost:5001/api/v1/users/summary', { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE_URL}/api/v1/users?${params}`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${API_BASE_URL}/api/v1/users/summary`, { headers: { 'Authorization': `Bearer ${token}` } }),
       ]);
       if (usersRes.ok) {
         const d = await usersRes.json();
@@ -1025,7 +1026,7 @@ export default function App() {
   const fetchDashboardStats = useCallback(async () => {
     if (!token || token.startsWith('mock-')) return;
     try {
-      const response = await fetch('http://localhost:5001/api/v1/dashboard/stats', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/dashboard/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -1074,7 +1075,7 @@ export default function App() {
     const connectWS = () => {
       try {
         const host = window.location.hostname || 'localhost';
-        const wsUrl = `ws://${host}:5001/ws`;
+        const wsUrl = getWsUrl();
         ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
@@ -1162,7 +1163,7 @@ export default function App() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5001/api/v1/hospital/beds', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/hospital/beds`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const result = await response.json();
@@ -1184,7 +1185,7 @@ export default function App() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5001/api/v1/hospital/beds/pdf', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/hospital/beds/pdf`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!response.ok) throw new Error('Failed to generate PDF');
@@ -1224,7 +1225,7 @@ export default function App() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5001/api/v1/hospital/beds/${bedId}/allocate`, {
+      const res = await fetch(`${API_BASE_URL}/api/v1/hospital/beds/${bedId}/allocate`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ patientDefenceId: bedFormPatient, patientRank: bedFormRank })
@@ -1256,7 +1257,7 @@ export default function App() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5001/api/v1/hospital/beds/${bedId}/release`, {
+      const res = await fetch(`${API_BASE_URL}/api/v1/hospital/beds/${bedId}/release`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -1284,7 +1285,7 @@ export default function App() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5001/api/v1/hospital/beds/${bedId}/maintenance`, {
+      const res = await fetch(`${API_BASE_URL}/api/v1/hospital/beds/${bedId}/maintenance`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ underMaintenance: nextStatus === 'MAINTENANCE' })
@@ -1315,7 +1316,7 @@ export default function App() {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:5001/api/v1/users/${id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/v1/users/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ status: userStatusForm.status, reason: userStatusForm.reason || undefined })
@@ -1354,7 +1355,7 @@ export default function App() {
     }
 
     try {
-      const res = await fetch('http://localhost:5001/api/v1/users', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(userNewForm)
@@ -1452,7 +1453,7 @@ export default function App() {
 
     const fetchPatients = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/patients', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/patients`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -1491,7 +1492,7 @@ export default function App() {
 
     const fetchDoctors = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/doctors', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/doctors`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -1525,7 +1526,7 @@ export default function App() {
 
     const fetchAppointments = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/appointments', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/appointments`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -1544,7 +1545,7 @@ export default function App() {
 
     const fetchInventory = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/inventory', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/inventory`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -1563,7 +1564,7 @@ export default function App() {
 
     const fetchReferrals = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/referrals', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/referrals`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -1740,8 +1741,8 @@ export default function App() {
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
         const url = patientModal.mode === 'add' 
-          ? 'http://localhost:5001/api/v1/patients'
-          : `http://localhost:5001/api/v1/patients/${patientModal.data?.patientId}`;
+          ? `${API_BASE_URL}/api/v1/patients`
+          : `${API_BASE_URL}/api/v1/patients/${patientModal.data?.patientId}`;
         
         const response = await fetch(url, {
           method: patientModal.mode === 'add' ? 'POST' : 'PUT',
@@ -1855,7 +1856,7 @@ export default function App() {
 
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
-        const response = await fetch(`http://localhost:5001/api/v1/patients/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/patients/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -1917,7 +1918,7 @@ export default function App() {
 
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/doctors', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/doctors`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1981,7 +1982,7 @@ export default function App() {
 
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
-        const response = await fetch(`http://localhost:5001/api/v1/doctors/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/doctors/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -2071,7 +2072,7 @@ export default function App() {
 
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
-        const response = await fetch('http://localhost:5001/api/v1/appointments', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/appointments`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -2127,7 +2128,7 @@ export default function App() {
         const promises = [];
         if (currentInConsult) {
           promises.push(
-            fetch(`http://localhost:5001/api/v1/appointments/${currentInConsult.appointmentId}`, {
+            fetch(`${API_BASE_URL}/api/v1/appointments/${currentInConsult.appointmentId}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -2139,7 +2140,7 @@ export default function App() {
         }
         if (nextInQueue) {
           promises.push(
-            fetch(`http://localhost:5001/api/v1/appointments/${nextInQueue.appointmentId}`, {
+            fetch(`${API_BASE_URL}/api/v1/appointments/${nextInQueue.appointmentId}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
@@ -2237,7 +2238,7 @@ export default function App() {
 
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
-        const response = await fetch(`http://localhost:5001/api/v1/inventory/${inventoryModal.data.medicineId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/inventory/${inventoryModal.data.medicineId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -2280,7 +2281,7 @@ export default function App() {
 
     if (isAuthenticated && token && !token.startsWith('mock-')) {
       try {
-        const response = await fetch(`http://localhost:5001/api/v1/referrals/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/referrals/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
