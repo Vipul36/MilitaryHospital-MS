@@ -36,6 +36,12 @@ services:
     region: singapore
     plan: free
 
+  # 3. Redis Service
+  - type: redis
+    name: mhshms-redis
+    region: singapore
+    plan: free
+
 databases:
   # 3. PostgreSQL Database
   - name: mhshms-postgres
