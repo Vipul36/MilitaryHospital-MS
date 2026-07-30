@@ -1,0 +1,196 @@
+name: MHSHMS CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+env:
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # ──────────────────────────────────────────────
+  # Job 1: API Integration Tests
+  # ──────────────────────────────────────────────
+  api-tests:
+    name: API Integration Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: mhshms
+          POSTGRES_PASSWORD: mhshms_secret
+          POSTGRES_DB: mhshms_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🐍 Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: 📦 Install Node.js root dependencies
+        run: npm ci
+
+      - name: 📦 Install API workspace dependencies
+        run: npm ci
+        working-directory: apps/api
+
+      - name: 📦 Install AI service Python dependencies
+        run: |
+          pip install --upgrade pip
+          if [ -f apps/ai-service/requirements.txt ]; then
+            pip install -r apps/ai-service/requirements.txt
+          fi
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate
+        working-directory: apps/api
+
+      - name: 🗄️ Run database migrations
+        run: npx prisma migrate deploy
+        working-directory: apps/api
+        env:
+          DATABASE_URL: postgresql://mhshms:mhshms_secret@localhost:5432/mhshms_db
+
+      - name: 🌱 Seed database
+        run: npx ts-node -T prisma/seed.ts
+        working-directory: apps/api
+        env:
+          DATABASE_URL: postgresql://mhshms:mhshms_secret@localhost:5432/mhshms_db
+          JWT_SECRET: ci_test_jwt_secret_key_mhshms
+          PORT: 5001
+
+      - name: 🧪 Run API integration tests
+        run: npx ts-node -T tests/api-integration.test.ts
+        working-directory: apps/api
+        env:
+          DATABASE_URL: postgresql://mhshms:mhshms_secret@localhost:5432/mhshms_db
+          JWT_SECRET: ci_test_jwt_secret_key_mhshms
+          PORT: 5001
+          NODE_ENV: test
+
+  # ──────────────────────────────────────────────
+  # Job 2: Frontend Build Check
+  # ──────────────────────────────────────────────
+  web-build:
+    name: Frontend Build Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install root dependencies
+        run: npm ci
+
+      - name: 📦 Install Web workspace dependencies
+        run: npm ci
+        working-directory: apps/web
+
+      - name: 🏗️ Build frontend production bundle
+        run: npm run build
+        working-directory: apps/web
+
+      - name: 📊 Report bundle size
+        run: |
+          echo "## Frontend Bundle Size" >> $GITHUB_STEP_SUMMARY
+          du -sh apps/web/dist 2>/dev/null || echo "No dist folder found"
+          find apps/web/dist -name "*.js" -o -name "*.css" 2>/dev/null | xargs du -sh 2>/dev/null | sort -rh | head -10 >> $GITHUB_STEP_SUMMARY || true
+
+  # ──────────────────────────────────────────────
+  # Job 3: Docker Workflow E2E (optional gate)
+  # ──────────────────────────────────────────────
+  docker-e2e:
+    name: Docker E2E Workflow
+    runs-on: ubuntu-latest
+    needs: [api-tests]
+    # Only run on push to main; skip on PRs to save CI minutes
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 🐳 Build and start Docker services
+        run: |
+          docker compose up -d --build
+        continue-on-error: true
+
+      - name: ⏳ Wait for services to be ready
+        run: |
+          echo "Waiting for API to be ready..."
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:5001/api/v1 > /dev/null 2>&1; then
+              echo "✅ API is ready."
+              break
+            fi
+            echo "Attempt $i: API not ready yet, retrying in 5s..."
+            sleep 5
+          done
+        continue-on-error: true
+
+      - name: 📦 Install API test dependencies
+        run: npm ci
+        working-directory: apps/api
+
+      - name: 🧪 Run E2E workflow tests
+        run: npx ts-node -T tests/workflow.test.ts
+        working-directory: apps/api
+        env:
+          DATABASE_URL: postgresql://mhshms:mhshms_secret@localhost:5432/mhshms_db
+          JWT_SECRET: ci_test_jwt_secret_key_mhshms
+          PORT: 5001
+          NODE_ENV: test
+        continue-on-error: true
+
+      - name: 🧹 Tear down Docker services
+        if: always()
+        run: docker compose down -v
+        continue-on-error: true

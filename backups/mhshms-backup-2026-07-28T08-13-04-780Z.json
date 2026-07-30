@@ -1,0 +1,824 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "timestamp": "2026-07-28T08:13:04.781Z",
+    "system": "Military Hospital Smart Healthcare Management System"
+  },
+  "tables": {
+    "users": [
+      {
+        "id": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "serviceNumber": "SM-90001",
+        "username": "admin",
+        "passwordHash": "$2a$10$2oah/Zd5hvUdpYnIliz9a.dobPqrykkvinSh2/bVSR6ANup5ktDaS",
+        "role": "ADMIN",
+        "email": "admin@militaryhospital.gov.in",
+        "phone": "+919999999999",
+        "status": "ACTIVE",
+        "createdAt": "2026-07-06T06:50:49.177Z",
+        "updatedAt": "2026-07-06T06:50:49.177Z"
+      },
+      {
+        "id": "f1801175-93c4-43f8-b7eb-c34e5f38db0b",
+        "serviceNumber": "SM-10042",
+        "username": "doctor",
+        "passwordHash": "$2a$10$V.lALliNle/WwPa9bh.YauQ09uwNrCxjNoRXdxUVN7ieQ38m.WXRC",
+        "role": "DOCTOR",
+        "email": "vikram.dev@militaryhospital.gov.in",
+        "phone": "+918888888888",
+        "status": "ACTIVE",
+        "createdAt": "2026-07-06T06:50:49.182Z",
+        "updatedAt": "2026-07-06T06:50:49.182Z"
+      },
+      {
+        "id": "6601fa38-8043-44b7-a7a9-e855992dcc3b",
+        "serviceNumber": "DEF-90812-M",
+        "username": "patient",
+        "passwordHash": "$2a$10$r6lABvGpRPse8aswTjVgrOWQBuYXsYQCWRM313aDMvL8AUowMqDmC",
+        "role": "PATIENT",
+        "email": "sharma@militaryhospital.gov.in",
+        "phone": "+917777777777",
+        "status": "ACTIVE",
+        "createdAt": "2026-07-06T06:50:49.186Z",
+        "updatedAt": "2026-07-06T06:50:49.186Z"
+      }
+    ],
+    "patients": [
+      {
+        "patientId": "31d7983e-fa46-483d-b3a5-2ac4b86cadd9",
+        "userId": "6601fa38-8043-44b7-a7a9-e855992dcc3b",
+        "defenceId": "DEF-90812-M",
+        "bloodGroup": "O_POS",
+        "dob": "1984-06-15T00:00:00.000Z",
+        "gender": "MALE",
+        "unit": "12 Armoured Regiment",
+        "rank": "Major",
+        "retired": false,
+        "dependentType": "SELF",
+        "emergencyName": "Sunita Dev",
+        "emergencyRel": "SPOUSE",
+        "emergencyPhone": "+919876543210",
+        "address": "Qtr 42B, Military Station, Jaipur",
+        "allergies": [
+          "Penicillin"
+        ],
+        "photo": null,
+        "currentHospital": "Military Hospital Jaipur"
+      }
+    ],
+    "doctors": [
+      {
+        "doctorId": "00e6a226-1b53-4351-9c3f-56afe777f7de",
+        "userId": "f1801175-93c4-43f8-b7eb-c34e5f38db0b",
+        "departmentId": "265d92ff-0bc4-4861-b057-a5f95cc9e931",
+        "specialization": "Orthopedics",
+        "qualification": "MS (Ortho), DNB",
+        "experience": 12,
+        "availableToday": true,
+        "roomNumber": "Ortho-203",
+        "licenseNumber": "MCI-12093-B"
+      }
+    ],
+    "departments": [
+      {
+        "departmentId": "70edb87e-3b9c-49cf-80b7-4271b22c1c87",
+        "hospitalId": "9bcadc0e-6d05-4fc1-b8c5-25dba8ef0586",
+        "departmentName": "General Medicine",
+        "floor": 1,
+        "building": "Dhanvantari Block",
+        "hod": "Col. Dr. Rajesh Verma"
+      },
+      {
+        "departmentId": "265d92ff-0bc4-4861-b057-a5f95cc9e931",
+        "hospitalId": "9bcadc0e-6d05-4fc1-b8c5-25dba8ef0586",
+        "departmentName": "Orthopedics",
+        "floor": 2,
+        "building": "Sushruta Block",
+        "hod": "Lt. Col. Dr. Vikram Dev"
+      },
+      {
+        "departmentId": "a0bda884-b180-4eb4-872f-eb1a760f542c",
+        "hospitalId": "9bcadc0e-6d05-4fc1-b8c5-25dba8ef0586",
+        "departmentName": "Cardiology",
+        "floor": 1,
+        "building": "Cardiovascular Wing",
+        "hod": "Col. Dr. A. K. Sharma"
+      }
+    ],
+    "hospitals": [
+      {
+        "hospitalId": "9bcadc0e-6d05-4fc1-b8c5-25dba8ef0586",
+        "name": "Military Hospital Jaipur",
+        "command": "SOUTHERN",
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "latitude": 26.9124,
+        "longitude": 75.7873,
+        "phone": "+911412200999",
+        "email": "mhjaipur@militaryhospital.gov.in",
+        "capacity": 450,
+        "icuBeds": 50,
+        "generalBeds": 400
+      }
+    ],
+    "appointments": [
+      {
+        "appointmentId": "d402a7f5-e6b9-47a2-a1a0-22da9f298e22",
+        "patientId": "31d7983e-fa46-483d-b3a5-2ac4b86cadd9",
+        "doctorId": "00e6a226-1b53-4351-9c3f-56afe777f7de",
+        "departmentId": "265d92ff-0bc4-4861-b057-a5f95cc9e931",
+        "date": "2026-07-06T06:50:49.192Z",
+        "time": "10:00",
+        "status": "COMPLETED",
+        "priority": "NORMAL",
+        "tokenNumber": 101,
+        "estimatedTime": 0,
+        "createdBy": "doctor",
+        "createdAt": "2026-07-06T06:50:49.192Z",
+        "updatedAt": "2026-07-06T06:50:49.192Z"
+      },
+      {
+        "appointmentId": "63444916-95a2-441e-9594-4a74bf051902",
+        "patientId": "31d7983e-fa46-483d-b3a5-2ac4b86cadd9",
+        "doctorId": "00e6a226-1b53-4351-9c3f-56afe777f7de",
+        "departmentId": "265d92ff-0bc4-4861-b057-a5f95cc9e931",
+        "date": "2026-07-07T00:00:00.000Z",
+        "time": "12:47",
+        "status": "WAITING",
+        "priority": "CHILD",
+        "tokenNumber": 101,
+        "estimatedTime": 0,
+        "createdBy": "admin",
+        "createdAt": "2026-07-07T07:17:23.204Z",
+        "updatedAt": "2026-07-07T07:17:23.204Z"
+      }
+    ],
+    "inventories": [
+      {
+        "inventoryId": "4d549168-2baf-45bb-98db-9eaaba6979c8",
+        "medicineId": "d4056a19-5cd0-48d1-a177-3efbe719b639",
+        "hospitalId": "9bcadc0e-6d05-4fc1-b8c5-25dba8ef0586",
+        "currentStock": 12000,
+        "reservedStock": 0,
+        "minimumStock": 2000,
+        "maximumStock": 20000,
+        "reorderLevel": 3000
+      },
+      {
+        "inventoryId": "968b2511-7c80-4b0b-b3cb-a05067a0b86f",
+        "medicineId": "4299f1b9-cca9-4afc-b457-31a222a90f5c",
+        "hospitalId": "9bcadc0e-6d05-4fc1-b8c5-25dba8ef0586",
+        "currentStock": 80,
+        "reservedStock": 0,
+        "minimumStock": 300,
+        "maximumStock": 3000,
+        "reorderLevel": 500
+      }
+    ],
+    "auditLogs": [
+      {
+        "auditId": "2ab97222-6cb6-4fc9-9d88-e5aea064fdbb",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T06:52:13.746Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "33fa2f34-c6db-466e-8706-e0a5b67207b8",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T07:03:15.601Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "e82e263c-affa-4191-b33b-2f9484b4c3a3",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T07:04:39.921Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "9b310747-d2b1-4508-9e8b-b8d0dee7cab4",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T07:18:36.485Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "b8b44b75-a030-4d5e-9be6-265fcafbbc56",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T07:19:03.338Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "8e5794a1-adfe-411f-b6f7-cd5459c13083",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T07:27:30.008Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "0530415b-bb76-439a-9d29-54b5d6bf5b34",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T07:34:27.948Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "d258f5cc-2792-4168-bb10-20215e47571c",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "DELETE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T07:34:27.949Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "ac85c46b-f4fb-4d1e-9519-357487cf90b2",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T07:34:27.955Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "c999b9ac-a1bb-444d-910b-522643051790",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T07:34:27.955Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "b9019c63-54df-4fbe-ac33-87b401c2de06",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T09:49:47.916Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "b16c89b0-9650-4022-8666-a5551d7f9fa5",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-4",
+        "timestamp": "2026-07-06T09:51:13.063Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "15e2b010-a2e8-4409-94a9-9f3be030c296",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "DELETE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-4",
+        "timestamp": "2026-07-06T09:51:13.064Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "ba5cbd28-cdae-4ed7-82e0-211391d04100",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-4",
+        "timestamp": "2026-07-06T09:51:13.071Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "55a86c06-d274-4d62-87d5-7e30a38a6387",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-4",
+        "timestamp": "2026-07-06T09:51:13.071Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "c081d613-5658-402e-9f8d-16628d8bb1ca",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T09:52:49.606Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "b6388530-de16-4122-85bd-a6e84f230aeb",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:07.436Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "97c9bbd2-f0bb-47d8-b925-668138c666e6",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "DELETE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:07.437Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "6e5a0dd0-ab0b-4a8a-b66a-9128f44cf2dc",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:07.445Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "2d438ae8-661b-443b-af8b-6427ef15ae75",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:07.446Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "e42a2785-6276-486c-8e76-9f3f2fcbcf05",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:22.980Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "6089e0d0-a5ca-4a1f-ac96-22daf8a67a72",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "DELETE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:22.982Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "dd40b8a6-d96e-4a98-acfa-6385eb08b2b8",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:22.988Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "24880550-40f5-4dd1-bad8-42ec858e6023",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:54:22.989Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "eb6b8e07-7470-4184-8838-f7e8a570dac6",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "PATIENT",
+        "entityId": "a734ad08-ae56-4542-9091-2eb58af1d597",
+        "timestamp": "2026-07-06T09:54:50.947Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "39252649-fe6e-4a87-a4bf-a3f5d9a9dcf7",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "APPOINTMENT",
+        "entityId": "3aae5fbc-120e-4f56-8e79-45b9a7d0a031",
+        "timestamp": "2026-07-06T09:54:50.975Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "65b10182-a137-413a-ae1c-49d378c5916f",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "PATIENT",
+        "entityId": "3123f399-fc05-4882-93d9-05667c642646",
+        "timestamp": "2026-07-06T09:55:06.960Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "5793641e-7e08-4128-9b48-ff15ea6c7c65",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "APPOINTMENT",
+        "entityId": "7a7193e3-839a-4c28-86b3-da3fea6cde3b",
+        "timestamp": "2026-07-06T09:55:06.989Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "e8d739f9-837f-4a27-b284-fd2ca623b3b1",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "APPOINTMENT",
+        "entityId": "7a7193e3-839a-4c28-86b3-da3fea6cde3b",
+        "timestamp": "2026-07-06T09:55:07.000Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "4c219aa7-7272-462e-bf57-6a62f4c963d5",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "REFERRAL",
+        "entityId": "54b8b710-45d6-402c-82d3-f6d6b7dd5cf9",
+        "timestamp": "2026-07-06T09:55:07.013Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "10e7ad42-2af1-4b2f-bd66-7a4c7e90cf84",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "APPROVE",
+        "entity": "REFERRAL",
+        "entityId": "54b8b710-45d6-402c-82d3-f6d6b7dd5cf9",
+        "timestamp": "2026-07-06T09:55:07.028Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "b524b3db-a258-46f1-b67e-d18fbc3bc1e7",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "LAB_REPORT",
+        "entityId": "a0c5d1c2-c472-4ba9-a63b-7c965a69ad4a",
+        "timestamp": "2026-07-06T09:55:07.036Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "3f3951df-abf5-4c74-84f4-242af971bbb1",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "COMPLETE",
+        "entity": "LAB_REPORT",
+        "entityId": "a0c5d1c2-c472-4ba9-a63b-7c965a69ad4a",
+        "timestamp": "2026-07-06T09:55:07.045Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "bc27a3a4-6a75-49a4-b7eb-006f28652c17",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:56:09.773Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "830d4cc8-cef3-4464-b16a-a4e3fef80be7",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:56:09.778Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "5a5488fa-449a-4700-b8d5-ebad83fea8c5",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:56:09.781Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "82ec0cc2-b457-4761-a453-2b1cf60780f1",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "DELETE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-1",
+        "timestamp": "2026-07-06T09:56:09.775Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "896f0371-48e3-44ed-b2b1-75be65d02f95",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "PATIENT",
+        "entityId": "efba1990-3684-42c4-9b87-074d339eece5",
+        "timestamp": "2026-07-06T09:56:10.555Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "59561215-e36e-4745-9350-96344a00165f",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "APPOINTMENT",
+        "entityId": "f7c58315-e91e-4636-beaa-a330c8129f70",
+        "timestamp": "2026-07-06T09:56:10.628Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "9ec793ec-6f50-4818-b712-eaee38485029",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "APPOINTMENT",
+        "entityId": "f7c58315-e91e-4636-beaa-a330c8129f70",
+        "timestamp": "2026-07-06T09:56:10.646Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "a737672a-4918-4bb8-8b97-1d099e749afb",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "REFERRAL",
+        "entityId": "ac0db8a9-7f8a-4fe2-9c6b-44baa4d09724",
+        "timestamp": "2026-07-06T09:56:10.664Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "6e47fbfd-d6c0-4862-abad-c4626af0fc07",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "APPROVE",
+        "entity": "REFERRAL",
+        "entityId": "ac0db8a9-7f8a-4fe2-9c6b-44baa4d09724",
+        "timestamp": "2026-07-06T09:56:10.680Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "d6b92ebd-99cf-4822-9ae3-b333ef005d7a",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "LAB_REPORT",
+        "entityId": "b47dc2a2-8b69-4a49-8642-53e08ef4c195",
+        "timestamp": "2026-07-06T09:56:10.687Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "30e4b545-22c7-40bc-a91c-42e453f5c5ab",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "COMPLETE",
+        "entity": "LAB_REPORT",
+        "entityId": "b47dc2a2-8b69-4a49-8642-53e08ef4c195",
+        "timestamp": "2026-07-06T09:56:10.694Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "23db75e1-8017-4161-b384-e463be904b39",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-06T18:50:51.627Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "74cd706f-91f3-4a7b-b16e-5ce15fc35a8a",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-07T06:53:21.419Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "e6d44976-2f9a-43fb-b0a8-e11cf021a3c7",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-07T07:01:51.972Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "b7fefb01-31d3-45cc-8b56-88ba4711156d",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-07T07:11:02.933Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "7167e32c-dee4-4c1a-8c14-750ed4356146",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-07T07:14:43.700Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "2928a20a-80e5-48ed-8e5e-8d1f7fcaf7f1",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-07T07:15:33.113Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "2d050a0f-7931-4de5-8877-52ca68e3a2a4",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-07T07:16:01.856Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "3d14bfeb-7961-4f8d-bd68-b153943ff95b",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "APPOINTMENT",
+        "entityId": "63444916-95a2-441e-9594-4a74bf051902",
+        "timestamp": "2026-07-07T07:17:23.218Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "1df7f03b-4b5f-498b-8940-1d9dc7ed6c20",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "LOGIN",
+        "entity": "USER",
+        "entityId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "timestamp": "2026-07-10T09:04:30.042Z",
+        "ipAddress": "::1"
+      },
+      {
+        "auditId": "fdac10db-f9a3-40f6-a9af-8045ec8c53d6",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "DELETE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-2",
+        "timestamp": "2026-07-17T10:19:40.502Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "b1e90e0d-7cc9-48a8-b8f6-c65e5fbbf767",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "BED_ALLOCATION",
+        "entityId": "BED-GEN-2",
+        "timestamp": "2026-07-17T10:19:40.501Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "7cad755e-8c94-4f0f-9ad5-016add351c0a",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-2",
+        "timestamp": "2026-07-17T10:19:40.509Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "61c23d60-5621-4c55-b173-ad401ebcb8ce",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "BED_MAINTENANCE",
+        "entityId": "BED-GEN-2",
+        "timestamp": "2026-07-17T10:19:40.510Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "e02318e6-bf30-4cb2-ad7f-daf0433d9110",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "PATIENT",
+        "entityId": "5949be0b-50ca-4adf-8ebe-d51ff9c86700",
+        "timestamp": "2026-07-17T10:19:41.253Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "1721272d-d834-4de4-82c2-5f089d1b729e",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "APPOINTMENT",
+        "entityId": "c26d2f1a-a57d-4ac3-99db-6cf910816df7",
+        "timestamp": "2026-07-17T10:19:41.289Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "6f189000-990c-4121-8a0e-f77e01821a98",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "UPDATE",
+        "entity": "APPOINTMENT",
+        "entityId": "c26d2f1a-a57d-4ac3-99db-6cf910816df7",
+        "timestamp": "2026-07-17T10:19:41.294Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "d6c84b29-eea6-414f-af40-f5e74f7a15f2",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "REFERRAL",
+        "entityId": "ec52ca51-89b7-46c1-a722-5848a16e09c3",
+        "timestamp": "2026-07-17T10:19:41.308Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "b8607e31-8c86-43b9-8930-0e138d0f5d7d",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "APPROVE",
+        "entity": "REFERRAL",
+        "entityId": "ec52ca51-89b7-46c1-a722-5848a16e09c3",
+        "timestamp": "2026-07-17T10:19:41.324Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "7e8ac397-98c6-472b-b4a8-66a7e347cf1c",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "CREATE",
+        "entity": "LAB_REPORT",
+        "entityId": "60a2b90b-b13a-4a45-991f-aac5aa371d84",
+        "timestamp": "2026-07-17T10:19:41.336Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      },
+      {
+        "auditId": "4d17d84e-6f98-4e5d-833c-543922ce43bd",
+        "userId": "7b072a49-707a-4346-b2c0-2084122536e4",
+        "action": "COMPLETE",
+        "entity": "LAB_REPORT",
+        "entityId": "60a2b90b-b13a-4a45-991f-aac5aa371d84",
+        "timestamp": "2026-07-17T10:19:41.346Z",
+        "ipAddress": "::ffff:127.0.0.1"
+      }
+    ],
+    "labReports": [
+      {
+        "testId": "6aeb8409-c8b8-4f2a-9b83-dcaee26d558f",
+        "consultationId": "6f882803-1899-48ea-b118-16a669ac2ffa",
+        "testName": "Complete Blood Count (CBC)",
+        "status": "COMPLETED",
+        "result": "Hb: 13.2 g/dL | WBC: 7400/µL | Platelets: 2.1 L/µL — Within normal limits.",
+        "reportURL": null,
+        "performedBy": "Lab Tech Sgt. Amit Rathore"
+      },
+      {
+        "testId": "c8d38a8e-5d3d-4676-96a7-322fb4aa18f4",
+        "consultationId": "6f882803-1899-48ea-b118-16a669ac2ffa",
+        "testName": "X-Ray Knee (AP & Lateral)",
+        "status": "COMPLETED",
+        "result": "Mild joint space narrowing in medial compartment. Osteophytes noted. No fracture.",
+        "reportURL": null,
+        "performedBy": "Radiographer Cpl. Suresh Meena"
+      },
+      {
+        "testId": "948cb1d1-48e1-4b5d-afe0-7d484d67213a",
+        "consultationId": "6f882803-1899-48ea-b118-16a669ac2ffa",
+        "testName": "Liver Function Tests (LFT)",
+        "status": "IN_PROGRESS",
+        "result": null,
+        "reportURL": null,
+        "performedBy": "Lab Tech L/Nk Pradeep Singh"
+      },
+      {
+        "testId": "b056e276-8f86-4b41-8e42-3c0efcffea79",
+        "consultationId": "6f882803-1899-48ea-b118-16a669ac2ffa",
+        "testName": "Urine Routine & Microscopy",
+        "status": "PENDING",
+        "result": null,
+        "reportURL": null,
+        "performedBy": null
+      }
+    ],
+    "notifications": [
+      {
+        "notificationId": "8dc0547c-2ef5-4862-b920-190173671b93",
+        "userId": "6601fa38-8043-44b7-a7a9-e855992dcc3b",
+        "type": "APPOINTMENT",
+        "title": "Appointment Confirmed",
+        "message": "Your appointment (Token #101) on 2026-07-05 at 10:00 has been confirmed.",
+        "status": "UNREAD",
+        "createdAt": "2026-07-06T06:50:49.198Z"
+      },
+      {
+        "notificationId": "35fc7deb-facb-4e58-bfed-0b6ebfa3eab7",
+        "userId": "6601fa38-8043-44b7-a7a9-e855992dcc3b",
+        "type": "REFERRAL",
+        "title": "Referral Approved",
+        "message": "Your referral to Medanta - The Medicity, Gurugram has been approved by Command Medical Officer (HQ Western Command).",
+        "status": "UNREAD",
+        "createdAt": "2026-07-06T06:50:49.199Z"
+      },
+      {
+        "notificationId": "1429a9de-e610-4ef0-8cc4-c4087607ebcd",
+        "userId": "6601fa38-8043-44b7-a7a9-e855992dcc3b",
+        "type": "APPOINTMENT",
+        "title": "Appointment Confirmed",
+        "message": "Your appointment (Token #101) on 2026-07-07 at 12:47 has been confirmed.",
+        "status": "UNREAD",
+        "createdAt": "2026-07-07T07:17:23.212Z"
+      }
+    ]
+  }
+}
