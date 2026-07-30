@@ -98,6 +98,18 @@ app.get('/api/docs.json', (_req: Request, res: Response) => {
 // Health Check Router (Docker/K8s readiness probe)
 app.use('/api/v1/health', healthRouter);
 
+// Root Endpoint
+app.get('/', (_req: Request, res: Response) => {
+  res.json({
+    status: 'success',
+    name: 'Military Hospital Smart Healthcare Management System (MHSHMS) API',
+    version: '1.0.0',
+    documentation: '/api/docs',
+    health: '/api/v1/health',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // API Root Healthcheck
 app.get('/api/v1', (_req: Request, res: Response) => {
   res.json({
