@@ -40,7 +40,7 @@ databases:
   # 3. PostgreSQL Database
   - name: mhshms-postgres
     databaseName: mhshms
-    user: postgres
+    user: mhshms_user
     plan: free
     region: singapore
 
