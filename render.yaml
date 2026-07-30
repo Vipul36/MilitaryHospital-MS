@@ -41,6 +41,7 @@ services:
     name: mhshms-redis
     region: singapore
     plan: free
+    ipAllowList: []
 
 databases:
   # 3. PostgreSQL Database
@@ -49,6 +50,7 @@ databases:
     user: mhshms_user
     plan: free
     region: singapore
+    ipAllowList: []
 
 # 4. Redis Cache / Broker
 # Note: Render Redis services can be added via the Render Dashboard.
